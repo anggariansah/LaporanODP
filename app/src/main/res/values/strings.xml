@@ -5,4 +5,10 @@
     <string name="password">Password</string>
     <string name="masuk">MASUK</string>
     <string name="splash_screen_title">Laporan Harian ODP \nPuskesmas Abadi Depok</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="logo">Logo</string>
+    <string name="profile_pasien">Profile Pasien</string>
+    <string name="buat_laporan">Buat Laporan</string>
+    <string name="ganti_password">Ganti Password</string>
+    <string name="tentang">Tentang</string>
 </resources>
