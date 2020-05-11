@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Laporan ODP</string>
+    <string name="welcome_login">Selamat Datang di Aplikasi\nLaporan Harian ODP</string>
+    <string name="nomor_ktp">Nomor KTP</string>
+    <string name="password">Password</string>
+    <string name="masuk">MASUK</string>
+    <string name="splash_screen_title">Laporan Harian ODP \nPuskesmas Abadi Depok</string>
 </resources>
