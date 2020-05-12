@@ -9,6 +9,7 @@ import androidx.cardview.widget.CardView;
 
 import tik.pnj.laporanodp.R;
 import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpActivity;
+import tik.pnj.laporanodp.ui.profile.ProfileActivity;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,7 +35,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cv_profile:
-
+                startActivity(new Intent(DashboardActivity.this, ProfileActivity.class));
                 break;
 
             case R.id.cv_laporan:
