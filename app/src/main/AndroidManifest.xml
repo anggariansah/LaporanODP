@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.laporan.input.InsertLaporanActivity" />
         <activity android:name=".ui.laporan.listodp.ListOdpActivity" />
+        <activity android:name=".ui.ChangePasswordActivity"/>
         <activity
             android:name=".ui.DashboardActivity"
             android:theme="@style/NoActionBar" />
