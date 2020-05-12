@@ -11,4 +11,7 @@
     <string name="buat_laporan">Buat Laporan</string>
     <string name="ganti_password">Ganti Password</string>
     <string name="tentang">Tentang</string>
+    <string name="konfirmasi_password_baru">Konfirmasi Password Baru</string>
+    <string name="password_baru">Password Baru</string>
+    <string name="password_lama">Password Lama</string>
 </resources>
