@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/head"
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="350dp"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/judul"
@@ -53,13 +54,15 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="#fff">
+            android:background="#fff"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
             <TextView
-                android:layout_gravity="center"
-                android:drawableTop="@drawable/icon_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawableTop="@drawable/icon_profile"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:text="@string/profile_pasien"
@@ -75,7 +78,9 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="#fff">
+            android:background="#fff"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -109,7 +114,9 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="#fff">
+            android:background="#fff"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -130,17 +137,19 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:background="#fff">
+            android:background="#fff"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:drawableTop="@drawable/icon_tentang"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:text="@string/tentang"
                 android:textAlignment="center"
                 android:textSize="16sp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:textStyle="bold" />
 
 
