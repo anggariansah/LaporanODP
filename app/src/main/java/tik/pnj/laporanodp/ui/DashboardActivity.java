@@ -1,37 +1,24 @@
 package tik.pnj.laporanodp.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import tik.pnj.laporanodp.R;
-import tik.pnj.laporanodp.ui.laporan.input.InsertLaporanActivity;
 import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpActivity;
 
-public class DashboardActivity extends AppCompatActivity implements View.OnClickListener  {
+public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
     private CardView mCardProfile, mCardLaporan, mCardChangePassword, mCardAbout;
-
-    private CardView cvLaporan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-<<<<<<< HEAD
-        cvLaporan = findViewById(R.id.cv_laporan);
-
-        cvLaporan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(DashboardActivity.this, ListOdpActivity.class));
-            }
-        });
-=======
         mCardProfile = findViewById(R.id.cv_profile);
         mCardLaporan = findViewById(R.id.cv_laporan);
         mCardChangePassword = findViewById(R.id.cv_ganti_password);
@@ -51,7 +38,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.cv_laporan:
-
+                startActivity(new Intent(DashboardActivity.this, ListOdpActivity.class));
                 break;
 
             case R.id.cv_ganti_password:
@@ -65,6 +52,5 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
                 break;
         }
->>>>>>> c4b1ecbb1a25fdf4d9d681102bb33993023593ee
     }
 }

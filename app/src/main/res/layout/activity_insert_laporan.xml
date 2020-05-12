@@ -8,6 +8,17 @@
     tools:context=".ui.laporan.input.InsertLaporanActivity">
 
     <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        tools:text="Rahma Azahri" />
+
+    <TextView
         android:id="@+id/tv_today_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,17 +28,6 @@
         android:textColor="@android:color/black"
         android:textSize="16sp"
         tools:text="Selasa, 12 Mei 2020" />
-
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        tools:text="Rahma Azahri" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -289,6 +289,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:layout_weight="0.5"
+            android:background="@drawable/button_outline"
             android:text="@string/kirim" />
 
         <Button
@@ -297,6 +298,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="0.5"
+            android:background="@drawable/button_outline"
             android:text="@string/batal" />
 
     </LinearLayout>

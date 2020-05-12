@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitServer {
 
-    private static final String base_url = "http://hunian.subicorp.com/api/";
+    private static final String base_url = "https://puskesabadijaya.000webhostapp.com/api/";
 
     private static Retrofit retrofit;
 
