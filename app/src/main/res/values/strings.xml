@@ -11,4 +11,14 @@
     <string name="buat_laporan">Buat Laporan</string>
     <string name="ganti_password">Ganti Password</string>
     <string name="tentang">Tentang</string>
+    <string name="demam">Demam</string>
+    <string name="radio_ya">Ya</string>
+    <string name="radio_tidak">Tidak</string>
+    <string name="sesak">Sesak</string>
+    <string name="nyeri_tenggorokan">Nyeri Tenggorokan</string>
+    <string name="batuk">Batuk</string>
+    <string name="pilek">Pilek</string>
+    <string name="diare">Diare</string>
+    <string name="kirim">Kirim</string>
+    <string name="batal">Batal</string>
 </resources>
