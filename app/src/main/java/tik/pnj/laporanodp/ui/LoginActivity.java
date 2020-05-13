@@ -14,8 +14,8 @@ import tik.pnj.laporanodp.R;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     // widget
-    private TextInputEditText mEdtKtp, mEdtPassword;
-    private Button mBtnLogin;
+    TextInputEditText mEdtKtp, mEdtPassword;
+    Button mBtnLogin;
 
     // vars
 

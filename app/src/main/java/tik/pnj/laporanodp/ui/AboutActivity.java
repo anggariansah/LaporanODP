@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import tik.pnj.laporanodp.R;
 
-public class ChangePasswordActivity extends AppCompatActivity {
+public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_password);
+        setContentView(R.layout.activity_about);
     }
 }

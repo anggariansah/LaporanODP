@@ -11,7 +11,7 @@ import tik.pnj.laporanodp.R;
 
 public class DashboardActivity extends AppCompatActivity implements View.OnClickListener  {
 
-    private CardView mCardProfile, mCardLaporan, mCardChangePassword, mCardAbout;
+    CardView mCardProfile, mCardLaporan, mCardChangePassword, mCardAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
