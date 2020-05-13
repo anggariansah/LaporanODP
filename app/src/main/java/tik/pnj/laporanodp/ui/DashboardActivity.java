@@ -1,15 +1,17 @@
 package tik.pnj.laporanodp.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import tik.pnj.laporanodp.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
-public class DashboardActivity extends AppCompatActivity implements View.OnClickListener  {
+import tik.pnj.laporanodp.R;
+import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpActivity;
+import tik.pnj.laporanodp.ui.profile.ProfileActivity;
+
+public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
 
     CardView mCardProfile, mCardLaporan, mCardChangePassword, mCardAbout;
 
@@ -33,11 +35,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cv_profile:
-
+                startActivity(new Intent(DashboardActivity.this, ProfileActivity.class));
                 break;
 
             case R.id.cv_laporan:
-
+                startActivity(new Intent(DashboardActivity.this, ListOdpActivity.class));
                 break;
 
             case R.id.cv_ganti_password:

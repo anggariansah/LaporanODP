@@ -11,7 +11,24 @@
     <string name="buat_laporan">Buat Laporan</string>
     <string name="ganti_password">Ganti Password</string>
     <string name="tentang">Tentang</string>
+    <string name="demam">Demam</string>
+    <string name="radio_ya">Ya</string>
+    <string name="radio_tidak">Tidak</string>
+    <string name="sesak">Sesak</string>
+    <string name="nyeri_tenggorokan">Nyeri Tenggorokan</string>
+    <string name="batuk">Batuk</string>
+    <string name="pilek">Pilek</string>
+    <string name="diare">Diare</string>
+    <string name="kirim">Kirim</string>
+    <string name="batal">Batal</string>
     <string name="konfirmasi_password_baru">Konfirmasi Password Baru</string>
     <string name="password_baru">Password Baru</string>
     <string name="password_lama">Password Lama</string>
+    <string name="nomor_kartu_keluarga">Nomor Kartu Keluarga</string>
+    <string name="nama">Nama</string>
+    <string name="alamat">Alamat</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="update_data">Update Data</string>
+    <string name="laki_laki">Laki - Laki</string>
+    <string name="perempuan">Perempuan</string>
 </resources>
