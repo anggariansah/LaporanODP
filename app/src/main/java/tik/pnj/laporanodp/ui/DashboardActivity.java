@@ -43,14 +43,11 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
                 break;
 
             case R.id.cv_ganti_password:
-
-                Intent intentPassword = new Intent(DashboardActivity.this, ChangePasswordActivity.class);
-                startActivity(intentPassword);
-
+                startActivity(new Intent(DashboardActivity.this, ChangePasswordActivity.class));
                 break;
 
             case R.id.cv_tentang:
-
+                startActivity(new Intent(DashboardActivity.this, AboutActivity.class));
                 break;
         }
     }

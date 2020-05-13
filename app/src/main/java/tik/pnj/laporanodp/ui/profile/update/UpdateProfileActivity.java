@@ -2,6 +2,7 @@ package tik.pnj.laporanodp.ui.profile.update;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
     Button mButtonUpdate;
     RadioButton mRadioLaki, mRadioPerempuan;
 
-    String id, jenisKelamin;
+    String id, noKK, noKTP, nama, alamat, jenisKelamin;
 
     private ProgressDialog progressDialog;
 
@@ -53,6 +54,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
         mRadioPerempuan = findViewById(R.id.radio_perempuan);
 
         progressDialog = new ProgressDialog(this);
+
+        mButtonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                validationUpdate();
+            }
+        });
 
         getListProfile(id);
 
@@ -104,12 +113,66 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         jenisKelamin = pasien.getJenisKelamin();
 
-        if(jenisKelamin.equals("Perempuan")){
+        if(jenisKelamin.equals("P")){
             mRadioPerempuan.setChecked(true);
             mRadioLaki.setChecked(false);
         }else {
             mRadioPerempuan.setChecked(false);
             mRadioLaki.setChecked(true);
+        }
+    }
+
+
+    private void updateProfile() {
+
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+
+        ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
+        Call<PasienEntity> getData = api.updateProfile(id, noKTP, noKK, nama, alamat, jenisKelamin);
+        getData.enqueue(new Callback<PasienEntity>() {
+            @Override
+            public void onResponse(Call<PasienEntity> call, Response<PasienEntity> response) {
+
+                boolean error = response.body().isError();
+
+                if (!error) {
+
+                    Toast.makeText(UpdateProfileActivity.this, "Insert Data Berhasil!", Toast.LENGTH_SHORT).show();
+
+
+                } else {
+                    Toast.makeText(UpdateProfileActivity.this, "Tidak ada data", Toast.LENGTH_SHORT).show();
+                }
+
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<PasienEntity> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(UpdateProfileActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+
+    private void validationUpdate(){
+        noKK = mEdtNoKk.getText().toString();
+        noKTP = mEdtNoKtp.getText().toString();
+        nama = mEdtNama.getText().toString();
+        alamat = mEdtAlamat.getText().toString();
+
+        if (mRadioLaki.isChecked())
+            jenisKelamin = "L";
+        else
+            jenisKelamin = "P";
+
+        if (!noKK.equals("") || !noKTP.equals("") || !nama.equals("") || !alamat.equals("")){
+            updateProfile();
+        }else{
+            Toast.makeText(UpdateProfileActivity.this, "Data Tidak Boleh Kosong!!", Toast.LENGTH_SHORT).show();
         }
     }
 }

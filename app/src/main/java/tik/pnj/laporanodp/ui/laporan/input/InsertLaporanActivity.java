@@ -33,7 +33,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
     // vars
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-    private String todayDate, noKtp;
+    private String todayDate, idOdp;
 
     private ProgressDialog progressDialog;
 
@@ -64,6 +64,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+            idOdp = extras.getString("id");
             mTvName.setText(extras.getString("name"));
         }
 
@@ -128,7 +129,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
         progressDialog.show();
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienEntity> login = api.insertLaporan(noKtp, data[0], data[1], data[2], data[3], data[4], data[5]);
+        Call<PasienEntity> login = api.insertLaporan(idOdp, data[0], data[1], data[2], data[3], data[4], data[5]);
         login.enqueue(new Callback<PasienEntity>() {
             @Override
             public void onResponse(Call<PasienEntity> call, Response<PasienEntity> response) {
@@ -136,7 +137,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
 
                 boolean error = response.body().isError();
 
-                if (error == false) {
+                if (!error) {
 
                     Toast.makeText(InsertLaporanActivity.this, "Insert Sukses!!", Toast.LENGTH_SHORT).show();
 

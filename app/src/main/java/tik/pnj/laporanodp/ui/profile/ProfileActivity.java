@@ -1,6 +1,7 @@
 package tik.pnj.laporanodp.ui.profile;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import tik.pnj.laporanodp.R;
 import tik.pnj.laporanodp.data.PasienEntity;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
+import tik.pnj.laporanodp.ui.profile.update.UpdateProfileActivity;
 import tik.pnj.laporanodp.util.DummyData;
 
 public class ProfileActivity extends AppCompatActivity {
@@ -100,6 +102,12 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View v, int position) {
                 PasienEntity pasien = listPasien.get(position);
+
+                String id = pasien.getId();
+
+                Intent intentUpdate = new Intent(ProfileActivity.this, UpdateProfileActivity.class);
+                intentUpdate.putExtra("id", id);
+                startActivity(intentUpdate);
 
             }
         });

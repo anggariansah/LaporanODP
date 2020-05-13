@@ -17,13 +17,27 @@ public interface ApiRequest {
 
     @FormUrlEncoded
     @POST("insertLaporan")
-    Call<PasienEntity> insertLaporan(@Field("noKtp") String noKtp,
+    Call<PasienEntity> insertLaporan(@Field("id_odp") String idOdp,
                                      @Field("demam") String demam,
                                      @Field("sesak") String sesak,
                                      @Field("nyeri") String nyeri,
                                      @Field("batuk") String batuk,
                                      @Field("pilek") String pilek,
                                      @Field("diare") String diare);
+
+    @FormUrlEncoded
+    @POST("updateProfile")
+    Call<PasienEntity> updateProfile(@Field("id") String id,
+                                     @Field("no_ktp") String noKtp,
+                                     @Field("no_kk") String noKK,
+                                     @Field("nama_lengkap") String nama,
+                                     @Field("alamat") String alamat,
+                                     @Field("jenis_kelamin") String jenkel);
+
+    @FormUrlEncoded
+    @POST("updatePassword")
+    Call<PasienEntity> updatePassword(@Field("id") String id,
+                                      @Field("password_baru") String passwordBaru);
 
     @GET("listProfile")
     Call<PasienEntity> listPasien();

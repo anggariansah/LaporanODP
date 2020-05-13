@@ -64,7 +64,7 @@ public class ListOdpActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienEntity> getData = api.listPasien();
+        Call<PasienEntity> getData = api.listOdp();
         getData.enqueue(new Callback<PasienEntity>() {
             @Override
             public void onResponse(Call<PasienEntity> call, Response<PasienEntity> response) {
@@ -101,6 +101,7 @@ public class ListOdpActivity extends AppCompatActivity {
             public void onItemClick(View view, int position) {
                 Toast.makeText(ListOdpActivity.this, listPasien.get(position).getNama(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ListOdpActivity.this, InsertLaporanActivity.class);
+                intent.putExtra("id", listPasien.get(position).getId());
                 intent.putExtra("name", listPasien.get(position).getNama());
                 startActivity(intent);
             }

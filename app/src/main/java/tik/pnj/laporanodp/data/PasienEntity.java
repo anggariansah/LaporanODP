@@ -6,6 +6,9 @@ import java.util.List;
 
 public class PasienEntity {
 
+    @SerializedName("id")
+    private String id;
+
     @SerializedName("no_kk")
     private String nomorKK;
 
@@ -36,6 +39,14 @@ public class PasienEntity {
         this.nama = nama;
         this.alamat = alamat;
         this.jenisKelamin = jenisKelamin;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPassword() {
