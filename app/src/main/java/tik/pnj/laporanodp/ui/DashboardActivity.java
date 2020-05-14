@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import tik.pnj.laporanodp.R;
+import tik.pnj.laporanodp.ui.laporan.listlaporan.ListLaporanActivity;
 import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpActivity;
 import tik.pnj.laporanodp.ui.profile.ProfileActivity;
 

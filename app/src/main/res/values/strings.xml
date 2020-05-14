@@ -31,4 +31,6 @@
     <string name="update_data">Update Data</string>
     <string name="laki_laki">Laki - Laki</string>
     <string name="perempuan">Perempuan</string>
+    <string name="daftar_laporan_harian">Daftar Laporan Harian</string>
+    <string name="detail">Detail</string>
 </resources>
