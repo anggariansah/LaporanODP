@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -16,8 +17,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tik.pnj.laporanodp.R;
 import tik.pnj.laporanodp.data.PasienEntity;
+import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
+import tik.pnj.laporanodp.util.UserPreference;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,8 +29,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     Button mBtnLogin;
     private ProgressDialog progressDialog;
 
-
     // vars
+    private UserPreference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mBtnLogin = findViewById(R.id.btn_login);
 
         progressDialog = new ProgressDialog(this);
-
+        preference = new UserPreference(this);
 
         mBtnLogin.setOnClickListener(this);
     }
@@ -55,25 +58,33 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void verify() {
+        String username = mEdtKtp.getText().toString().trim();
+        String password = mEdtPassword.getText().toString().trim();
+
+        if (username.equals("") && password.equals("")) {
+            Toast.makeText(this, "Mohon Lengkapi !", Toast.LENGTH_SHORT).show();
+        } else {
+            checkLogin(username, password);
+        }
+    }
+
+    private void checkLogin(String username, String password) {
         progressDialog.setMessage("Harap Tunggu ..");
         progressDialog.setCancelable(false);
         progressDialog.show();
 
-        String username = mEdtKtp.getText().toString();
-        String password = mEdtPassword.getText().toString();
-
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienEntity> login = api.loginUser(username, password);
-        login.enqueue(new Callback<PasienEntity>() {
+        Call<PasienResponse> login = api.loginUser(username, password);
+        login.enqueue(new Callback<PasienResponse>() {
             @Override
-            public void onResponse(Call<PasienEntity> call, Response<PasienEntity> response) {
+            public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
                 progressDialog.hide();
 
                 boolean error = response.body().isError();
 
-                if (error == false) {
-
-                    loginSuccess();
+                if (!error) {
+                    int idOdp = response.body().getUser().get(0).getIdOdp();
+                    loginSuccess(idOdp);
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Login failed!!", Toast.LENGTH_SHORT).show();
@@ -82,16 +93,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             @Override
-            public void onFailure(Call<PasienEntity> call, Throwable t) {
+            public void onFailure(Call<PasienResponse> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(LoginActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Network Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
 
     }
 
-    private void loginSuccess() {
+    private void loginSuccess(int idOdp) {
+        preference.createLoginSession(idOdp);
         Toast.makeText(this, "Login Success!!", Toast.LENGTH_SHORT).show();
         startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
         finish();

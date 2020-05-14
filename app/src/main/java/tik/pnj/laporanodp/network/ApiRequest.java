@@ -6,18 +6,18 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
-import tik.pnj.laporanodp.data.PasienEntity;
+import tik.pnj.laporanodp.data.PasienResponse;
 
 public interface ApiRequest {
 
     @FormUrlEncoded
-    @POST("login")
-    Call<PasienEntity> loginUser(@Field("username") String noKtp,
-                                 @Field("password") String password);
+    @POST("login/login")
+    Call<PasienResponse> loginUser(@Field("username") String noKtp,
+                                   @Field("password") String password);
 
     @FormUrlEncoded
-    @POST("insertLaporan")
-    Call<PasienEntity> insertLaporan(@Field("id_odp") String idOdp,
+    @POST("laporan/add")
+    Call<PasienResponse> insertLaporan(@Field("id_odp") String idOdp,
                                      @Field("demam") String demam,
                                      @Field("sesak") String sesak,
                                      @Field("nyeri") String nyeri,
@@ -27,7 +27,7 @@ public interface ApiRequest {
 
     @FormUrlEncoded
     @POST("updateProfile")
-    Call<PasienEntity> updateProfile(@Field("id") String id,
+    Call<PasienResponse> updateProfile(@Field("id") String id,
                                      @Field("no_ktp") String noKtp,
                                      @Field("no_kk") String noKK,
                                      @Field("nama_lengkap") String nama,
@@ -35,17 +35,17 @@ public interface ApiRequest {
                                      @Field("jenis_kelamin") String jenkel);
 
     @FormUrlEncoded
-    @POST("updatePassword")
-    Call<PasienEntity> updatePassword(@Field("id") String id,
+    @POST("akun/update")
+    Call<PasienResponse> updatePassword(@Field("id") String id,
                                       @Field("password_baru") String passwordBaru);
 
     @GET("listProfile")
-    Call<PasienEntity> listPasien();
+    Call<PasienResponse> listPasien();
 
     @GET("detailProfile")
-    Call<PasienEntity> detailProfile(@Query("id") String id);
+    Call<PasienResponse> detailProfile(@Query("id") String id);
 
     @GET("listOdp")
-    Call<PasienEntity> listOdp();
+    Call<PasienResponse> listOdp();
 
 }

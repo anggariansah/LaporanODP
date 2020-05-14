@@ -8,7 +8,6 @@ public class UserPreference {
     private static final String PREFERENCES_NAME = "OdpPref";
     private static final String ID_KEY = "IdKey";
     private static final String IS_USER_LOGIN = "UserLogin";
-    private static final String KTP_KEY = "KtpKey";
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -20,16 +19,14 @@ public class UserPreference {
         editor = pref.edit();
     }
 
-    public void createLoginSession(String id, String ktp) {
+    public void createLoginSession(int id) {
         editor.putBoolean(IS_USER_LOGIN, true);
-        editor.putString(ID_KEY, id);
-        editor.putString(KTP_KEY, ktp);
+        editor.putInt(ID_KEY, id);
         editor.apply();
     }
 
     public void deleteLoginSession() {
         editor.remove(ID_KEY);
-        editor.remove(KTP_KEY);
         editor.remove(IS_USER_LOGIN);
         editor.apply();
     }
@@ -38,8 +35,8 @@ public class UserPreference {
         return pref.getBoolean(IS_USER_LOGIN, false);
     }
 
-    public String getUserId(){
-        return pref.getString(ID_KEY, "");
+    public int getUserId(){
+        return pref.getInt(ID_KEY, 0);
     }
 
 

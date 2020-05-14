@@ -7,23 +7,39 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import tik.pnj.laporanodp.R;
+import tik.pnj.laporanodp.util.UserPreference;
 
 public class SplashScreenActivity extends AppCompatActivity {
+
+    private UserPreference preference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+        preference = new UserPreference(this);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                startActivity(i);
-                finish();
-
+                checkSession();
             }
         }, 3000);
 
+    }
+
+    private void checkSession() {
+
+        Intent intent;
+
+        if (preference.isUserLoggedIn()) {
+            intent= new Intent(SplashScreenActivity.this, DashboardActivity.class);
+        } else {
+            intent= new Intent(SplashScreenActivity.this, LoginActivity.class);
+        }
+
+        startActivity(intent);
+        finish();
     }
 }

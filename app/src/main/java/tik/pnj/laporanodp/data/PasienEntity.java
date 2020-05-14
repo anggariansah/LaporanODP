@@ -27,9 +27,6 @@ public class PasienEntity {
     @SerializedName("password")
     private String password;
 
-    private boolean error;
-    private List<PasienEntity> listPasien;
-
     public PasienEntity() {
     }
 
@@ -55,22 +52,6 @@ public class PasienEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isError() {
-        return error;
-    }
-
-    public void setError(boolean error) {
-        this.error = error;
-    }
-
-    public List<PasienEntity> getListPasien() {
-        return listPasien;
-    }
-
-    public void setListPasien(List<PasienEntity> listPasien) {
-        this.listPasien = listPasien;
     }
 
     public String getNomorKK() {

@@ -20,6 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tik.pnj.laporanodp.R;
 import tik.pnj.laporanodp.data.PasienEntity;
+import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
 
@@ -129,10 +130,10 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
         progressDialog.show();
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienEntity> login = api.insertLaporan(idOdp, data[0], data[1], data[2], data[3], data[4], data[5]);
-        login.enqueue(new Callback<PasienEntity>() {
+        Call<PasienResponse> login = api.insertLaporan(idOdp, data[0], data[1], data[2], data[3], data[4], data[5]);
+        login.enqueue(new Callback<PasienResponse>() {
             @Override
-            public void onResponse(Call<PasienEntity> call, Response<PasienEntity> response) {
+            public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
                 progressDialog.hide();
 
                 boolean error = response.body().isError();
@@ -148,7 +149,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
             }
 
             @Override
-            public void onFailure(Call<PasienEntity> call, Throwable t) {
+            public void onFailure(Call<PasienResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(InsertLaporanActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
             }

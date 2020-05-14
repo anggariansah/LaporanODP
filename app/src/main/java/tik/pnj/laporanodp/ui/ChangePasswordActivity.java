@@ -15,6 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tik.pnj.laporanodp.R;
 import tik.pnj.laporanodp.data.PasienEntity;
+import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
 
@@ -56,10 +57,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienEntity> getData = api.updatePassword(id, passwordBaru);
-        getData.enqueue(new Callback<PasienEntity>() {
+        Call<PasienResponse> getData = api.updatePassword(id, passwordBaru);
+        getData.enqueue(new Callback<PasienResponse>() {
             @Override
-            public void onResponse(Call<PasienEntity> call, Response<PasienEntity> response) {
+            public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
 
                 boolean error = response.body().isError();
 
@@ -76,7 +77,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PasienEntity> call, Throwable t) {
+            public void onFailure(Call<PasienResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(ChangePasswordActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
             }
