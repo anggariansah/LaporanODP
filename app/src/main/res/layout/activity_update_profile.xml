@@ -22,6 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/nomor_kartu_keluarga"
+                android:enabled="false"
                 android:inputType="number" />
 
         </com.google.android.material.textfield.TextInputLayout>

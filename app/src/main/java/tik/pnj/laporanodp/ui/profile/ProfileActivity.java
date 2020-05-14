@@ -23,6 +23,7 @@ import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
 import tik.pnj.laporanodp.ui.profile.update.UpdateProfileActivity;
 import tik.pnj.laporanodp.util.DummyData;
+import tik.pnj.laporanodp.util.UserPreference;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
     // vars
     ProfileAdapter adapter;
     private List<PasienEntity> listPasien;
-
+    private UserPreference preference;
     private ProgressDialog progressDialog;
 
 
@@ -49,10 +50,11 @@ public class ProfileActivity extends AppCompatActivity {
         // casting
         rvProfile = findViewById(R.id.rv_profile);
 
+        preference = new UserPreference(this);
         progressDialog = new ProgressDialog(this);
 
-
-        getListProfile();
+        String nomorKK = preference.getNomorKK();
+        getListProfile(nomorKK);
 
     }
 
@@ -60,13 +62,14 @@ public class ProfileActivity extends AppCompatActivity {
         return DummyData.getDummyPasien();
     }
 
-    private void getListProfile() {
+    private void getListProfile(String nomorKK) {
 
+        progressDialog.setMessage("Harap Tunggu");
         progressDialog.show();
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getData = api.listOdp();
+        Call<PasienResponse> getData = api.listOdp(nomorKK);
         getData.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {

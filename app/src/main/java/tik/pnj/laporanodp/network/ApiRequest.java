@@ -40,10 +40,10 @@ public interface ApiRequest {
     Call<PasienResponse> updatePassword(@Field("id") String id,
                                         @Field("password") String passwordBaru);
 
-    @GET("data?id=")
+    @GET("data")
     Call<PasienResponse> detailProfile(@Query("id") String id);
 
     @GET("data")
-    Call<PasienResponse> listOdp();
+    Call<PasienResponse> listOdp(@Query("no_kk") String nomorKK);
 
 }

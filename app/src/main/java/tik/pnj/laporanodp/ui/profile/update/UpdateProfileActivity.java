@@ -3,6 +3,7 @@ package tik.pnj.laporanodp.ui.profile.update;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -34,17 +35,17 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
     private List<PasienEntity> listPasien;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
 
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id = extras.getString("id");
-            Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "" + id, Toast.LENGTH_SHORT).show();
         }
 
         mEdtNoKk = findViewById(R.id.text_input_edit_nokk);
@@ -55,7 +56,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
         mRadioLaki = findViewById(R.id.radio_laki);
         mRadioPerempuan = findViewById(R.id.radio_perempuan);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Update Data Pasien");
+        }
+
+
         progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Harap Tunggu");
 
         mButtonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +113,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
     }
 
 
-    private void setData(){
+    private void setData() {
         PasienEntity pasien = listPasien.get(0);
 
         mEdtNoKk.setText(pasien.getNomorKK());
@@ -115,10 +123,10 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         jenisKelamin = pasien.getJenisKelamin();
 
-        if(jenisKelamin.equals("P")){
+        if (jenisKelamin.equals("P")) {
             mRadioPerempuan.setChecked(true);
             mRadioLaki.setChecked(false);
-        }else {
+        } else {
             mRadioPerempuan.setChecked(false);
             mRadioLaki.setChecked(true);
         }
@@ -131,7 +139,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getData = api.updateProfile(id, noKTP, noKK, nama, alamat, "T",jenisKelamin);
+        Call<PasienResponse> getData = api.updateProfile(id, noKTP, noKK, nama, alamat, "T", jenisKelamin);
         getData.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
@@ -154,14 +162,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PasienResponse> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(UpdateProfileActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(UpdateProfileActivity.this, "Gagal Mengupdate data", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
-
-    private void validationUpdate(){
+    private void validationUpdate() {
         noKK = mEdtNoKk.getText().toString();
         noKTP = mEdtNoKtp.getText().toString();
         nama = mEdtNama.getText().toString();
@@ -172,10 +179,16 @@ public class UpdateProfileActivity extends AppCompatActivity {
         else
             jenisKelamin = "P";
 
-        if (!noKK.equals("") || !noKTP.equals("") || !nama.equals("") || !alamat.equals("")){
+        if (!noKK.equals("") || !noKTP.equals("") || !nama.equals("") || !alamat.equals("")) {
             updateProfile();
-        }else{
+        } else {
             Toast.makeText(UpdateProfileActivity.this, "Data Tidak Boleh Kosong!!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

@@ -142,11 +142,11 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
 
                 if (!error) {
 
-                    Toast.makeText(InsertLaporanActivity.this, "Insert Sukses!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InsertLaporanActivity.this, "Berhasil Mengirim Laporan Harian", Toast.LENGTH_SHORT).show();
                     finish();
 
                 } else {
-                    Toast.makeText(InsertLaporanActivity.this, "Insert failed!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InsertLaporanActivity.this, "Gagal Mengirim Laporan Harian", Toast.LENGTH_SHORT).show();
                 }
 
             }

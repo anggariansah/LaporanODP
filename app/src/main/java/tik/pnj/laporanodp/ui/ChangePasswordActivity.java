@@ -40,6 +40,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
         mEdtKonfirmPasswordBaru = findViewById(R.id.text_input_edit_konfirmasi_password_baru);
         mBtnChange = findViewById(R.id.btn_change);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Ganti Password");
+        }
+
         progressDialog = new ProgressDialog(this);
 
         mBtnChange.setOnClickListener(new View.OnClickListener() {
@@ -112,5 +117,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

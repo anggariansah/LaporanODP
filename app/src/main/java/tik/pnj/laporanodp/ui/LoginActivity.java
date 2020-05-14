@@ -78,12 +78,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
-                progressDialog.hide();
+                progressDialog.dismiss();
 
                 boolean error = response.body().isError();
 
                 if (!error) {
-                    int idOdp = response.body().getUser().get(0).getIdOdp();
+                    String idOdp = response.body().getUser().get(0).getIdOdp();
                     loginSuccess(idOdp);
 
                 } else {
@@ -99,13 +99,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-
     }
 
-    private void loginSuccess(int idOdp) {
-        preference.createLoginSession(idOdp);
-        Toast.makeText(this, "Login Success!!", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
-        finish();
+    private void loginSuccess(final String idOdp) {
+
+        progressDialog.setMessage("Harap Tunggu ..");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
+        Call<PasienResponse> getProfile = api.detailProfile(idOdp);
+        getProfile.enqueue(new Callback<PasienResponse>() {
+            @Override
+            public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
+                progressDialog.dismiss();
+
+                boolean error = response.body().isError();
+
+                if (!error) {
+                    String nomorKk = response.body().getListPasien().get(0).getNomorKK();
+                    preference.createLoginSession(idOdp, nomorKk);
+                    Toast.makeText(LoginActivity.this, "Login Success!!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                    finish();
+                } else {
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<PasienResponse> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(LoginActivity.this, "Network Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

@@ -11,7 +11,7 @@ public class UserEntity {
     private String username;
 
     @SerializedName("id_odp")
-    private int idOdp;
+    private String idOdp;
 
     public int getIdAkun() {
         return idAkun;
@@ -29,11 +29,11 @@ public class UserEntity {
         this.username = username;
     }
 
-    public int getIdOdp() {
+    public String getIdOdp() {
         return idOdp;
     }
 
-    public void setIdOdp(int idOdp) {
+    public void setIdOdp(String idOdp) {
         this.idOdp = idOdp;
     }
 }

@@ -24,6 +24,9 @@ public class PasienEntity {
     @SerializedName("jenis_kelamin")
     private String jenisKelamin;
 
+    @SerializedName("status_kk")
+    private String statusKK;
+
     @SerializedName("password")
     private String password;
 
@@ -92,5 +95,13 @@ public class PasienEntity {
 
     public void setJenisKelamin(String jenisKelamin) {
         this.jenisKelamin = jenisKelamin;
+    }
+
+    public String getStatusKK() {
+        return statusKK;
+    }
+
+    public void setStatusKK(String statusKK) {
+        this.statusKK = statusKK;
     }
 }

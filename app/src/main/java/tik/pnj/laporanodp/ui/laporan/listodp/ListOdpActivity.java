@@ -23,6 +23,7 @@ import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
 import tik.pnj.laporanodp.ui.laporan.input.InsertLaporanActivity;
 import tik.pnj.laporanodp.util.DummyData;
+import tik.pnj.laporanodp.util.UserPreference;
 
 public class ListOdpActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class ListOdpActivity extends AppCompatActivity {
     // vars
     private ListOdpAdapter adapter;
     private List<PasienEntity> listPasien;
-
+    private UserPreference preference;
     private ProgressDialog progressDialog;
 
 
@@ -49,9 +50,12 @@ public class ListOdpActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Daftar ODP");
         }
 
+        preference = new UserPreference(this);
         progressDialog = new ProgressDialog(this);
 
-        getListOdp();
+        String nomorKK = preference.getNomorKK();
+
+        getListOdp(nomorKK);
 
     }
 
@@ -59,13 +63,14 @@ public class ListOdpActivity extends AppCompatActivity {
         return DummyData.getDummyPasien();
     }
 
-    private void getListOdp() {
+    private void getListOdp(String nomorKK) {
 
+        progressDialog.setMessage("Harap Tunggu");
         progressDialog.show();
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getData = api.listOdp();
+        Call<PasienResponse> getData = api.listOdp(nomorKK);
         getData.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
@@ -94,7 +99,7 @@ public class ListOdpActivity extends AppCompatActivity {
 
     }
 
-    private void setAdapter(){
+    private void setAdapter() {
         mRvOdp.setLayoutManager(new LinearLayoutManager(this));
         mRvOdp.setHasFixedSize(true);
         adapter = new ListOdpAdapter(ListOdpActivity.this, listPasien, new ListOdpAdapter.ItemClickListener() {
