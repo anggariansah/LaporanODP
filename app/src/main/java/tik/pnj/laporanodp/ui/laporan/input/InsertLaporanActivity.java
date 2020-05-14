@@ -66,6 +66,8 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             idOdp = extras.getString("id");
+
+            Toast.makeText(this, ""+idOdp, Toast.LENGTH_SHORT).show();
             mTvName.setText(extras.getString("name"));
         }
 
@@ -141,6 +143,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
                 if (!error) {
 
                     Toast.makeText(InsertLaporanActivity.this, "Insert Sukses!!", Toast.LENGTH_SHORT).show();
+                    finish();
 
                 } else {
                     Toast.makeText(InsertLaporanActivity.this, "Insert failed!!", Toast.LENGTH_SHORT).show();

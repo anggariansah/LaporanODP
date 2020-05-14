@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getData = api.listPasien();
+        Call<PasienResponse> getData = api.listOdp();
         getData.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {

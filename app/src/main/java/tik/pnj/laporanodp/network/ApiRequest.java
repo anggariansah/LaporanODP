@@ -20,32 +20,30 @@ public interface ApiRequest {
     Call<PasienResponse> insertLaporan(@Field("id_odp") String idOdp,
                                      @Field("demam") String demam,
                                      @Field("sesak") String sesak,
-                                     @Field("nyeri") String nyeri,
+                                     @Field("nyeri_tenggorokan") String nyeri,
                                      @Field("batuk") String batuk,
                                      @Field("pilek") String pilek,
                                      @Field("diare") String diare);
 
     @FormUrlEncoded
-    @POST("updateProfile")
+    @POST("data/update")
     Call<PasienResponse> updateProfile(@Field("id") String id,
-                                     @Field("no_ktp") String noKtp,
-                                     @Field("no_kk") String noKK,
-                                     @Field("nama_lengkap") String nama,
-                                     @Field("alamat") String alamat,
-                                     @Field("jenis_kelamin") String jenkel);
+                                       @Field("no_ktp") String noKtp,
+                                       @Field("no_kk") String noKK,
+                                       @Field("nama_lengkap") String nama,
+                                       @Field("alamat") String alamat,
+                                       @Field("status_kk") String status,
+                                       @Field("jenis_kelamin") String jenkel);
 
     @FormUrlEncoded
     @POST("akun/update")
     Call<PasienResponse> updatePassword(@Field("id") String id,
-                                      @Field("password_baru") String passwordBaru);
+                                        @Field("password") String passwordBaru);
 
-    @GET("listProfile")
-    Call<PasienResponse> listPasien();
-
-    @GET("detailProfile")
+    @GET("data?id=")
     Call<PasienResponse> detailProfile(@Query("id") String id);
 
-    @GET("listOdp")
+    @GET("data")
     Call<PasienResponse> listOdp();
 
 }

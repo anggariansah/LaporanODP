@@ -44,6 +44,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id = extras.getString("id");
+            Toast.makeText(this, ""+id, Toast.LENGTH_SHORT).show();
         }
 
         mEdtNoKk = findViewById(R.id.text_input_edit_nokk);
@@ -130,7 +131,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getData = api.updateProfile(id, noKTP, noKK, nama, alamat, jenisKelamin);
+        Call<PasienResponse> getData = api.updateProfile(id, noKTP, noKK, nama, alamat, "T",jenisKelamin);
         getData.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
@@ -139,7 +140,8 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
                 if (!error) {
 
-                    Toast.makeText(UpdateProfileActivity.this, "Insert Data Berhasil!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateProfileActivity.this, "Update Data Berhasil!", Toast.LENGTH_SHORT).show();
+                    finish();
 
 
                 } else {

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class PasienEntity {
 
-    @SerializedName("id")
+    @SerializedName("id_odp")
     private String id;
 
     @SerializedName("no_kk")

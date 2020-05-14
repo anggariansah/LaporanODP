@@ -34,7 +34,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         PasienEntity model = listPasien.get(position);
 
         holder.mTvNomorkk.setText(model.getNomorKK());
@@ -42,6 +42,13 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         holder.mTvNama.setText(model.getNama());
         holder.mTvAlamat.setText(model.getAlamat());
         holder.mTvJk.setText(model.getJenisKelamin());
+
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickListener.onItemClick(v, position);
+            }
+        });
     }
 
     @Override
@@ -52,9 +59,13 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTvNomorkk, mTvNomorKtp, mTvNama, mTvAlamat, mTvJk;
+        View container;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            container = itemView;
 
             mTvNomorkk = itemView.findViewById(R.id.tv_item_kk);
             mTvNomorKtp = itemView.findViewById(R.id.tv_item_ktp);
