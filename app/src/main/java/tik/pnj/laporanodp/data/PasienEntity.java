@@ -30,6 +30,12 @@ public class PasienEntity {
     @SerializedName("password")
     private String password;
 
+    @SerializedName("day")
+    private int day;
+
+    @SerializedName("date")
+    private int date;
+
     public PasienEntity() {
     }
 
@@ -39,6 +45,22 @@ public class PasienEntity {
         this.nama = nama;
         this.alamat = alamat;
         this.jenisKelamin = jenisKelamin;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
     }
 
     public String getId() {
