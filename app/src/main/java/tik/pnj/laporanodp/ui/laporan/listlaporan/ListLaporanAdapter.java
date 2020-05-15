@@ -13,18 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import tik.pnj.laporanodp.R;
-import tik.pnj.laporanodp.data.PasienEntity;
-import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpAdapter;
+import tik.pnj.laporanodp.data.LaporanEntity;
 
 public class ListLaporanAdapter extends RecyclerView.Adapter<ListLaporanAdapter.ViewHolder> {
 
     Context context;
-    private List<PasienEntity> listPasien;
+    private List<LaporanEntity> listLaporan;
     private ItemClickListener itemClickListener;
 
-    public ListLaporanAdapter(Context context, List<PasienEntity> listPasien, ItemClickListener itemClickListener) {
+    public ListLaporanAdapter(Context context, List<LaporanEntity> listLaporan, ItemClickListener itemClickListener) {
         this.context = context;
-        this.listPasien = listPasien;
+        this.listLaporan = listLaporan;
         this.itemClickListener = itemClickListener;
     }
 
@@ -38,14 +37,14 @@ public class ListLaporanAdapter extends RecyclerView.Adapter<ListLaporanAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
-        PasienEntity model = listPasien.get(position);
+        LaporanEntity model = listLaporan.get(position);
 
+        int hari = position + 1;
+        holder.mTvHari.setText(String.valueOf(hari));
+        holder.mTvTanggal.setText(model.getTanggal());
+        holder.mTvStatus.setText("SUDAH LAPOR");
 
-        holder.mTvHari.setText(model.getDay());
-        holder.mTvTanggal.setText(model.getDate());
-        holder.mTvStatus.setText(model.getStatusKK());
-
-        holder.container.setOnClickListener(new View.OnClickListener() {
+        holder.mBtnDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 itemClickListener.onItemClick(v, position);
@@ -56,20 +55,16 @@ public class ListLaporanAdapter extends RecyclerView.Adapter<ListLaporanAdapter.
 
     @Override
     public int getItemCount() {
-        return listPasien.size();
+        return listLaporan.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTvHari, mTvTanggal, mTvStatus;
         Button mBtnDetail;
-        View container;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            container = itemView;
 
             mTvHari = itemView.findViewById(R.id.tv_item_hari);
             mTvTanggal = itemView.findViewById(R.id.tv_item_date);

@@ -18,6 +18,9 @@ public class PasienResponse {
     @SerializedName("user")
     private List<UserEntity> user;
 
+    @SerializedName("laporan")
+    private List<LaporanEntity> listLaporan;
+
     public int getStatus() {
         return status;
     }
@@ -48,5 +51,13 @@ public class PasienResponse {
 
     public void setUser(List<UserEntity> user) {
         this.user = user;
+    }
+
+    public List<LaporanEntity> getListLaporan() {
+        return listLaporan;
+    }
+
+    public void setListLaporan(List<LaporanEntity> listLaporan) {
+        this.listLaporan = listLaporan;
     }
 }

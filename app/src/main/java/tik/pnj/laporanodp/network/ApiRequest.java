@@ -47,6 +47,6 @@ public interface ApiRequest {
     Call<PasienResponse> listOdp(@Query("no_kk") String nomorKK);
 
     @GET("laporan")
-    Call<PasienResponse> listLaporan(@Query("no_kk") String nomorKK);
+    Call<PasienResponse> listLaporan(@Query("id") String idOdp);
 
 }

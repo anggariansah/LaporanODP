@@ -22,6 +22,7 @@ import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
 import tik.pnj.laporanodp.ui.laporan.input.InsertLaporanActivity;
+import tik.pnj.laporanodp.ui.laporan.listlaporan.ListLaporanActivity;
 import tik.pnj.laporanodp.util.DummyData;
 import tik.pnj.laporanodp.util.UserPreference;
 
@@ -105,8 +106,8 @@ public class ListOdpActivity extends AppCompatActivity {
         adapter = new ListOdpAdapter(ListOdpActivity.this, listPasien, new ListOdpAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(ListOdpActivity.this, listPasien.get(position).getNama(), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ListOdpActivity.this, InsertLaporanActivity.class);
+                Toast.makeText(ListOdpActivity.this, listPasien.get(position).getNama() + "\n" + listPasien.get(position).getId(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ListOdpActivity.this, ListLaporanActivity.class);
                 intent.putExtra("id", listPasien.get(position).getId());
                 intent.putExtra("name", listPasien.get(position).getNama());
                 startActivity(intent);
