@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,8 +38,15 @@ public class ListOdpAdapter extends RecyclerView.Adapter<ListOdpAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         PasienEntity model = listPasien.get(position);
 
-        holder.mTvNomorkk.setText(model.getNomorKK());
+        holder.mTvNik.setText(model.getNik());
         holder.mTvNama.setText(model.getNama());
+
+        if(model.getJenkel().equals("L")){
+            holder.mIvJenkel.setImageResource(R.drawable.icon_user_boy);
+        }else{
+            holder.mIvJenkel.setImageResource(R.drawable.icon_user_girl);
+        }
+
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,16 +62,18 @@ public class ListOdpAdapter extends RecyclerView.Adapter<ListOdpAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mTvNomorkk, mTvNama;
+        TextView mTvNik, mTvNama;
+        ImageView mIvJenkel;
         View container;
 
-        public ViewHolder(@NonNull View itemView) {
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             container = itemView;
 
-            mTvNomorkk = itemView.findViewById(R.id.tv_nomor_kk);
+            mTvNik = itemView.findViewById(R.id.tv_nik);
             mTvNama = itemView.findViewById(R.id.tv_nama);
+            mIvJenkel = itemView.findViewById(R.id.iv_jenkel);
         }
     }
 

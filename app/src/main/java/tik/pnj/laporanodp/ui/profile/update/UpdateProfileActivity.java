@@ -25,7 +25,7 @@ import tik.pnj.laporanodp.network.RetrofitServer;
 
 public class UpdateProfileActivity extends AppCompatActivity {
 
-    TextInputEditText mEdtNoKk, mEdtNoKtp, mEdtNama, mEdtAlamat;
+    TextInputEditText  mEdtNoKtp, mEdtNama, mEdtAlamat;
     Button mButtonUpdate;
     RadioButton mRadioLaki, mRadioPerempuan;
 
@@ -48,7 +48,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
             Toast.makeText(this, "" + id, Toast.LENGTH_SHORT).show();
         }
 
-        mEdtNoKk = findViewById(R.id.text_input_edit_nokk);
         mEdtNoKtp = findViewById(R.id.text_inpute_edit_no_ktp);
         mEdtNama = findViewById(R.id.text_input_edit_nama);
         mEdtAlamat = findViewById(R.id.text_input_edit_alamat);
@@ -116,12 +115,11 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private void setData() {
         PasienEntity pasien = listPasien.get(0);
 
-        mEdtNoKk.setText(pasien.getNomorKK());
-        mEdtNoKtp.setText(pasien.getNomorKTP());
+        mEdtNoKtp.setText(pasien.getNik());
         mEdtNama.setText(pasien.getNama());
         mEdtAlamat.setText(pasien.getAlamat());
 
-        jenisKelamin = pasien.getJenisKelamin();
+        jenisKelamin = pasien.getJenkel();
 
         if (jenisKelamin.equals("P")) {
             mRadioPerempuan.setChecked(true);
@@ -139,7 +137,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getData = api.updateProfile(id, noKTP, noKK, nama, alamat, "T", jenisKelamin);
+        Call<PasienResponse> getData = api.updateProfile(id, noKTP, nama, alamat, jenisKelamin);
         getData.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
@@ -169,7 +167,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
     }
 
     private void validationUpdate() {
-        noKK = mEdtNoKk.getText().toString();
         noKTP = mEdtNoKtp.getText().toString();
         nama = mEdtNama.getText().toString();
         alamat = mEdtAlamat.getText().toString();

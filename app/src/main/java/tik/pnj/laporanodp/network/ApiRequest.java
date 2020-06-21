@@ -11,28 +11,26 @@ import tik.pnj.laporanodp.data.PasienResponse;
 public interface ApiRequest {
 
     @FormUrlEncoded
-    @POST("login/login")
+    @POST("login/login_pasien")
     Call<PasienResponse> loginUser(@Field("username") String noKtp,
                                    @Field("password") String password);
 
     @FormUrlEncoded
     @POST("laporan/add")
-    Call<PasienResponse> insertLaporan(@Field("id_odp") String idOdp,
-                                     @Field("demam") String demam,
-                                     @Field("sesak") String sesak,
-                                     @Field("nyeri_tenggorokan") String nyeri,
+    Call<PasienResponse> insertLaporan(@Field("id_kasus") String idOdp,
+                                     @Field("sakit_tgg") String nyeri,
                                      @Field("batuk") String batuk,
                                      @Field("pilek") String pilek,
-                                     @Field("diare") String diare);
+                                     @Field("diare") String diare,
+                                     @Field("suhu_demam") String suhu,
+                                     @Field("tanggal") String tanggal);
 
     @FormUrlEncoded
     @POST("data/update")
     Call<PasienResponse> updateProfile(@Field("id") String id,
                                        @Field("no_ktp") String noKtp,
-                                       @Field("no_kk") String noKK,
                                        @Field("nama_lengkap") String nama,
                                        @Field("alamat") String alamat,
-                                       @Field("status_kk") String status,
                                        @Field("jenis_kelamin") String jenkel);
 
     @FormUrlEncoded
@@ -41,12 +39,12 @@ public interface ApiRequest {
                                         @Field("password") String passwordBaru);
 
     @GET("data")
-    Call<PasienResponse> detailProfile(@Query("id") String id);
+    Call<PasienResponse> detailProfile(@Query("no_kk") String id);
 
     @GET("data")
     Call<PasienResponse> listOdp(@Query("no_kk") String nomorKK);
 
     @GET("laporan")
-    Call<PasienResponse> listLaporan(@Query("id") String idOdp);
+    Call<PasienResponse> listLaporan(@Query("id_kasus") String idOdp);
 
 }

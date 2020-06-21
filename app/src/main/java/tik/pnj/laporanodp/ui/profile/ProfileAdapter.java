@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,11 +38,15 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder,final int position) {
         PasienEntity model = listPasien.get(position);
 
-        holder.mTvNomorkk.setText(model.getNomorKK());
-        holder.mTvNomorKtp.setText(model.getNomorKTP());
+        holder.mTvNomorKtp.setText(model.getNik());
         holder.mTvNama.setText(model.getNama());
-        holder.mTvAlamat.setText(model.getAlamat());
-        holder.mTvJk.setText(model.getJenisKelamin());
+        holder.mTvTglLahir.setText(model.getTglLahir());
+
+        if(model.getJenkel().equals("L")){
+            holder.mIvJenkel.setImageResource(R.drawable.icon_user_boy);
+        }else{
+            holder.mIvJenkel.setImageResource(R.drawable.icon_user_girl);
+        }
 
         holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +63,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView mTvNomorkk, mTvNomorKtp, mTvNama, mTvAlamat, mTvJk;
+        TextView mTvNomorKtp, mTvNama, mTvTglLahir;
+        ImageView mIvJenkel;
         View container;
 
 
@@ -67,11 +73,10 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
 
             container = itemView;
 
-            mTvNomorkk = itemView.findViewById(R.id.tv_item_kk);
             mTvNomorKtp = itemView.findViewById(R.id.tv_item_ktp);
             mTvNama = itemView.findViewById(R.id.tv_item_nama);
-            mTvAlamat = itemView.findViewById(R.id.tv_item_alamat);
-            mTvJk = itemView.findViewById(R.id.tv_item_jk);
+            mTvTglLahir = itemView.findViewById(R.id.tv_item_tgl_lahir);
+            mIvJenkel = itemView.findViewById(R.id.iv_jenkel);
         }
     }
 

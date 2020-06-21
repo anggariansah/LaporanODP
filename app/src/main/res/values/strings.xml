@@ -33,4 +33,7 @@
     <string name="perempuan">Perempuan</string>
     <string name="daftar_laporan_harian">Daftar Laporan Harian</string>
     <string name="detail">Detail</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="suhu_tubuh">Suhu Tubuh</string>
+    <string name="radio_tidak_tahu">Tidak Tahu</string>
 </resources>

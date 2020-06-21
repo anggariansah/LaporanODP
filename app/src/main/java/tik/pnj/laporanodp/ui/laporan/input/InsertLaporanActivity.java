@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -19,7 +20,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import tik.pnj.laporanodp.R;
-import tik.pnj.laporanodp.data.PasienEntity;
 import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
@@ -27,14 +27,16 @@ import tik.pnj.laporanodp.network.RetrofitServer;
 public class InsertLaporanActivity extends AppCompatActivity implements View.OnClickListener {
 
     // widget
-    private Button mBtnKirim, mBtnBatal;
-    private RadioGroup mRgDemam, mRgSesak, mRgNyeri, mRgBatuk, mRgPilek, mRgDiare;
-    private TextView mTvTodayDate, mTvName;
+    Button mBtnKirim, mBtnBatal;
+    RadioGroup mRgDemam, mRgSesak, mRgNyeri, mRgBatuk, mRgPilek, mRgDiare;
+    TextView mTvTodayDate, mTvName;
+    EditText mEdtSuhu;
+
 
     // vars
-    private Calendar calendar;
-    private SimpleDateFormat dateFormat;
-    private String todayDate, idOdp;
+    Calendar calendar;
+    SimpleDateFormat dateFormat, dateFormatInsert;
+    String todayDate, todayDateInsert , idOdp;
 
     private ProgressDialog progressDialog;
 
@@ -55,10 +57,14 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
         mRgBatuk = findViewById(R.id.radio_group_batuk);
         mRgPilek = findViewById(R.id.radio_group_pilek);
         mRgDiare = findViewById(R.id.radio_group_diare);
+        mEdtSuhu = findViewById(R.id.edt_suhu);
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("EEEE, d MMM yyyy");
-        todayDate = dateFormat.format(calendar.getTime());
+        dateFormatInsert = new SimpleDateFormat("yyyy-MM-dd");
+
+        todayDate = dateFormatInsert.format(calendar.getTime());
+        todayDateInsert = dateFormatInsert.format(calendar.getTime());
         mTvTodayDate.setText(todayDate);
 
         progressDialog = new ProgressDialog(this);
@@ -109,12 +115,12 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
             RadioButton rbDiare = findViewById(idDiare);
 
             String[] data = new String[]{
-                    rbDemam.getText().toString(),
-                    rbSesak.getText().toString(),
                     rbNyeri.getText().toString(),
                     rbBatuk.getText().toString(),
                     rbPilek.getText().toString(),
-                    rbDiare.getText().toString()
+                    rbDiare.getText().toString(),
+                    mEdtSuhu.getText().toString(),
+                    todayDateInsert
             };
 
             saveData(data);
@@ -126,6 +132,8 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
 
     private void saveData(String[] data) {
         String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
+
+        Toast.makeText(this, " "+idOdp+" "+data[0]+" "+data[1], Toast.LENGTH_SHORT).show();
 
         progressDialog.setMessage("Harap Tunggu ..");
         progressDialog.setCancelable(false);

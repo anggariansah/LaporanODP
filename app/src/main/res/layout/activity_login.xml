@@ -62,8 +62,8 @@
                     android:id="@+id/text_input_edit_ktp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="@string/nomor_ktp"
-                    android:inputType="number" />
+                    android:hint="Username"
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

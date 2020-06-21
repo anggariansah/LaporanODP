@@ -2,30 +2,31 @@ package tik.pnj.laporanodp.data;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class PasienEntity {
 
-    @SerializedName("id_odp")
+    @SerializedName("id_kasus")
     private String id;
 
     @SerializedName("no_kk")
     private String nomorKK;
 
-    @SerializedName("no_ktp")
-    private String nomorKTP;
+    @SerializedName("nik")
+    private String nik;
 
-    @SerializedName("nama_lengkap")
+    @SerializedName("nama")
     private String nama;
 
     @SerializedName("alamat")
     private String alamat;
 
-    @SerializedName("jenis_kelamin")
-    private String jenisKelamin;
+    @SerializedName("tgl_lahir")
+    private String tglLahir;
 
     @SerializedName("status_kk")
     private String statusKK;
+
+    @SerializedName("jk")
+    private String jenkel;
 
     @SerializedName("password")
     private String password;
@@ -39,12 +40,12 @@ public class PasienEntity {
     public PasienEntity() {
     }
 
-    public PasienEntity(String nomorKK, String nomorKTP, String nama, String alamat, String jenisKelamin) {
+    public PasienEntity(String nomorKK, String nik, String nama, String alamat, String tglLahir) {
         this.nomorKK = nomorKK;
-        this.nomorKTP = nomorKTP;
+        this.nik = nik;
         this.nama = nama;
         this.alamat = alamat;
-        this.jenisKelamin = jenisKelamin;
+        this.tglLahir = tglLahir;
     }
 
     public int getDate() {
@@ -87,12 +88,12 @@ public class PasienEntity {
         this.nomorKK = nomorKK;
     }
 
-    public String getNomorKTP() {
-        return nomorKTP;
+    public String getNik() {
+        return nik;
     }
 
-    public void setNomorKTP(String nomorKTP) {
-        this.nomorKTP = nomorKTP;
+    public void setNik(String nik) {
+        this.nik = nik;
     }
 
     public String getNama() {
@@ -111,12 +112,12 @@ public class PasienEntity {
         this.alamat = alamat;
     }
 
-    public String getJenisKelamin() {
-        return jenisKelamin;
+    public String getTglLahir() {
+        return tglLahir;
     }
 
-    public void setJenisKelamin(String jenisKelamin) {
-        this.jenisKelamin = jenisKelamin;
+    public void setTglLahir(String tglLahir) {
+        this.tglLahir = tglLahir;
     }
 
     public String getStatusKK() {
@@ -125,5 +126,13 @@ public class PasienEntity {
 
     public void setStatusKK(String statusKK) {
         this.statusKK = statusKK;
+    }
+
+    public String getJenkel() {
+        return jenkel;
+    }
+
+    public void setJenkel(String jenkel) {
+        this.jenkel = jenkel;
     }
 }
