@@ -34,9 +34,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         Intent intent;
 
         if (preference.isUserLoggedIn()) {
-            intent= new Intent(SplashScreenActivity.this, DashboardActivity.class);
+            if(preference.getUserRole().equals("pasien")){
+                intent = new Intent(SplashScreenActivity.this, DashboardPasienActivity.class);
+            }else{
+                intent = new Intent(SplashScreenActivity.this, DashboardActivity.class);
+            }
         } else {
-            intent= new Intent(SplashScreenActivity.this, LoginActivity.class);
+            intent = new Intent(SplashScreenActivity.this, LoginMenuActivity.class);
         }
 
         startActivity(intent);

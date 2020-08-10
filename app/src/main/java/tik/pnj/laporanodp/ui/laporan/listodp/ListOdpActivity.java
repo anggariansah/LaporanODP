@@ -21,7 +21,6 @@ import tik.pnj.laporanodp.data.PasienEntity;
 import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
-import tik.pnj.laporanodp.ui.laporan.input.InsertLaporanActivity;
 import tik.pnj.laporanodp.ui.laporan.listlaporan.ListLaporanActivity;
 import tik.pnj.laporanodp.util.DummyData;
 import tik.pnj.laporanodp.util.UserPreference;
@@ -54,7 +53,7 @@ public class ListOdpActivity extends AppCompatActivity {
         preference = new UserPreference(this);
         progressDialog = new ProgressDialog(this);
 
-        String nomorKK = preference.getNomorKK();
+        String nomorKK = preference.getUserId();
 
         getListOdp(nomorKK);
 

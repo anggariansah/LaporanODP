@@ -7,7 +7,7 @@ public class PasienEntity {
     @SerializedName("id_kasus")
     private String id;
 
-    @SerializedName("no_kk")
+    @SerializedName("nik_pj")
     private String nomorKK;
 
     @SerializedName("nik")

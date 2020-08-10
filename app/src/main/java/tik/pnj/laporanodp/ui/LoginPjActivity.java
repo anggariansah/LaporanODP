@@ -20,7 +20,7 @@ import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
 import tik.pnj.laporanodp.util.UserPreference;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginPjActivity extends AppCompatActivity {
 
     // widget
     TextInputEditText mEdtKtp, mEdtPassword;
@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_pj);
 
         // casting widget
         mEdtKtp = findViewById(R.id.text_input_edit_ktp);
@@ -43,17 +43,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog = new ProgressDialog(this);
         preference = new UserPreference(this);
 
-        mBtnLogin.setOnClickListener(this);
+
+        mBtnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verify();
+            }
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_login:
-                verify();
-                break;
-        }
-    }
 
     private void verify() {
         String username = mEdtKtp.getText().toString().trim();
@@ -72,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressDialog.show();
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> login = api.loginUser(username, password);
+        Call<PasienResponse> login = api.loginPJ(username, password);
         login.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
@@ -81,47 +79,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 boolean error = response.body().isError();
 
                 if (!error) {
-                    String idOdp = response.body().getUser().get(0).getIdOdp();
-                    loginSuccess(idOdp);
-
-                } else {
-                    Toast.makeText(LoginActivity.this, "Login failed!!", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<PasienResponse> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(LoginActivity.this, "Network Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
-    private void loginSuccess(final String idOdp) {
-
-        progressDialog.setMessage("Harap Tunggu ..");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-
-        ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getProfile = api.detailProfile(idOdp);
-        getProfile.enqueue(new Callback<PasienResponse>() {
-            @Override
-            public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
-                progressDialog.dismiss();
-
-                boolean error = response.body().isError();
-
-                if (!error) {
-                    String nomorKk = response.body().getListPasien().get(0).getNomorKK();
-                    preference.createLoginSession(idOdp, nomorKk);
-                    Toast.makeText(LoginActivity.this, "Login Success!!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
+                    String nik = response.body().getUser().get(0).getNik();
+                    preference.createLoginSession(nik, "pj");
+                    Toast.makeText(LoginPjActivity.this, "Login Success!!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginPjActivity.this, DashboardActivity.class));
                     finish();
                 } else {
-
+                    Toast.makeText(LoginPjActivity.this, "Login failed!!", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -129,8 +93,41 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onFailure(Call<PasienResponse> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(LoginActivity.this, "Network Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginPjActivity.this, "Network Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
     }
+
+//    private void loginSuccess(final String nik) {
+//
+//        progressDialog.setMessage("Harap Tunggu ..");
+//        progressDialog.setCancelable(false);
+//        progressDialog.show();
+//
+//        ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
+//        Call<PasienResponse> getProfile = api.detailProfile(nik);
+//        getProfile.enqueue(new Callback<PasienResponse>() {
+//            @Override
+//            public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
+//                progressDialog.dismiss();
+//
+//                boolean error = response.body().isError();
+//
+//                if (!error) {
+//                    String nomorKk = response.body().getListDataPasien().get(0).getNomorKK();
+//
+//                } else {
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<PasienResponse> call, Throwable t) {
+//                progressDialog.dismiss();
+//                Toast.makeText(LoginPjActivity.this, "Network Error " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 }

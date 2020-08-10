@@ -1,13 +1,12 @@
 package tik.pnj.laporanodp.ui;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.ProgressDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -20,21 +19,21 @@ import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
 import tik.pnj.laporanodp.util.UserPreference;
 
-public class ChangePasswordActivity extends AppCompatActivity {
+public class ChangePasswordPasienActivity extends AppCompatActivity {
 
     private TextInputEditText mEdtPasswordLama, mEdtPasswordBaru, mEdtKonfirmPasswordBaru;
     private Button mBtnChange;
+
     private ProgressDialog progressDialog;
     private UserPreference preferences;
 
 
     String id, passwordLama, passwordBaru, konfirmasiPasswordBaru;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_password);
+        setContentView(R.layout.activity_change_password_pasien);
 
         mEdtPasswordLama = findViewById(R.id.text_input_edit_password_lama);
         mEdtPasswordBaru = findViewById(R.id.text_input_edit_password_baru);
@@ -59,14 +58,13 @@ public class ChangePasswordActivity extends AppCompatActivity {
         });
     }
 
-
     private void updatePassword() {
 
         progressDialog.show();
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getData = api.updatePasswordPj(id, passwordLama, passwordBaru);
+        Call<PasienResponse> getData = api.updatePasswordPasien(id, passwordLama, passwordBaru);
         getData.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
@@ -76,11 +74,11 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
                 if (!error) {
 
-                    Toast.makeText(ChangePasswordActivity.this, pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePasswordPasienActivity.this, pesan, Toast.LENGTH_SHORT).show();
                     finish();
 
                 } else {
-                    Toast.makeText(ChangePasswordActivity.this, pesan, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChangePasswordPasienActivity.this, pesan, Toast.LENGTH_SHORT).show();
                 }
 
                 progressDialog.dismiss();
@@ -89,7 +87,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PasienResponse> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(ChangePasswordActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChangePasswordPasienActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -6,12 +6,25 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/puskesmas_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.laporan.listlaporan.ListLaporanActivity"></activity>
+        <activity android:name=".ui.profile.ProfilePasienActivity"></activity>
+        <activity android:name=".ui.ChangePasswordPasienActivity" />
+        <activity
+            android:name=".ui.DashboardPasienActivity"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".ui.laporan.listodp.ListOdpPasienActivity" />
+        <activity
+            android:name=".ui.LoginMenuActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".ui.LoginPjActivity"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".ui.laporan.listlaporan.ListLaporanActivity" />
         <activity android:name=".ui.profile.update.UpdateProfileActivity" />
         <activity android:name=".ui.AboutActivity" />
         <activity android:name=".ui.profile.ProfileActivity" />
@@ -20,10 +33,9 @@
         <activity android:name=".ui.ChangePasswordActivity" />
         <activity
             android:name=".ui.DashboardActivity"
-            android:theme="@style/NoActionBar" >
-        </activity>
+            android:theme="@style/NoActionBar" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name=".ui.LoginPasienActivity"
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".ui.SplashScreenActivity"
@@ -34,6 +46,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver
+            android:name=".receiver.AlarmReceiverPagi"
+            android:process=":remote" />
+        <receiver
+            android:name=".receiver.AlarmReceiverSiang"
+            android:process=":remote" />
     </application>
 
 </manifest>

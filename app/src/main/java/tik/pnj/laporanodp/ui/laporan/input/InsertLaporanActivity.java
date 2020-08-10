@@ -120,7 +120,8 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
                     rbPilek.getText().toString(),
                     rbDiare.getText().toString(),
                     mEdtSuhu.getText().toString(),
-                    todayDateInsert
+                    todayDateInsert,
+                    rbSesak.getText().toString()
             };
 
             saveData(data);
@@ -133,14 +134,12 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
     private void saveData(String[] data) {
         String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
 
-        Toast.makeText(this, " "+idOdp+" "+data[0]+" "+data[1], Toast.LENGTH_SHORT).show();
-
         progressDialog.setMessage("Harap Tunggu ..");
         progressDialog.setCancelable(false);
         progressDialog.show();
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> login = api.insertLaporan(idOdp, data[0], data[1], data[2], data[3], data[4], data[5]);
+        Call<PasienResponse> login = api.insertLaporan(idOdp, data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
         login.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {

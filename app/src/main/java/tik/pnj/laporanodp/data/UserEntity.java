@@ -10,8 +10,11 @@ public class UserEntity {
     @SerializedName("username")
     private String username;
 
-    @SerializedName("id_odp")
-    private String idOdp;
+    @SerializedName("id_kasus")
+    private String idKasus;
+
+    @SerializedName("nik")
+    private String nik;
 
     public int getIdAkun() {
         return idAkun;
@@ -29,11 +32,19 @@ public class UserEntity {
         this.username = username;
     }
 
-    public String getIdOdp() {
-        return idOdp;
+    public String getIdKasus() {
+        return idKasus;
     }
 
-    public void setIdOdp(String idOdp) {
-        this.idOdp = idOdp;
+    public void setIdKasus(String idKasus) {
+        this.idKasus = idKasus;
+    }
+
+    public String getNik() {
+        return nik;
+    }
+
+    public void setNik(String nik) {
+        this.nik = nik;
     }
 }

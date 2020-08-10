@@ -1,5 +1,9 @@
 package tik.pnj.laporanodp.ui;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -12,10 +16,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 
 import java.util.Calendar;
 import java.util.List;
@@ -30,16 +30,18 @@ import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
 import tik.pnj.laporanodp.receiver.AlarmReceiverPagi;
 import tik.pnj.laporanodp.receiver.AlarmReceiverSiang;
-import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpActivity;
-import tik.pnj.laporanodp.ui.profile.ProfileActivity;
+import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpPasienActivity;
+import tik.pnj.laporanodp.ui.profile.ProfilePasienActivity;
 import tik.pnj.laporanodp.util.UserPreference;
 
-public class DashboardActivity extends AppCompatActivity implements View.OnClickListener {
+public class DashboardPasienActivity extends AppCompatActivity implements View.OnClickListener {
+
 
     CardView mCardProfile, mCardLaporan, mCardChangePassword, mCardAbout;
-    private Toolbar mToolbar;
 
     final static int RQS_1 = 1;
+    private Toolbar mToolbar;
+
 
     private ProgressDialog progressDialog;
 
@@ -51,7 +53,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard_pasien);
 
         mCardProfile = findViewById(R.id.cv_profile);
         mCardLaporan = findViewById(R.id.cv_laporan);
@@ -64,6 +66,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             getSupportActionBar().setTitle("");
         }
 
+
         mCardProfile.setOnClickListener(this);
         mCardLaporan.setOnClickListener(this);
         mCardChangePassword.setOnClickListener(this);
@@ -75,10 +78,6 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
         String idkasus = preference.getUserId();
 
-
-        setTimeAlarm();
-
-
         getStatus(idkasus);
     }
 
@@ -86,19 +85,19 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cv_profile:
-                startActivity(new Intent(DashboardActivity.this, ProfileActivity.class));
+                startActivity(new Intent(DashboardPasienActivity.this, ProfilePasienActivity.class));
                 break;
 
             case R.id.cv_laporan:
-                startActivity(new Intent(DashboardActivity.this, ListOdpActivity.class));
+                startActivity(new Intent(DashboardPasienActivity.this, ListOdpPasienActivity.class));
                 break;
 
             case R.id.cv_ganti_password:
-                startActivity(new Intent(DashboardActivity.this, ChangePasswordActivity.class));
+                startActivity(new Intent(DashboardPasienActivity.this, ChangePasswordPasienActivity.class));
                 break;
 
             case R.id.cv_tentang:
-                startActivity(new Intent(DashboardActivity.this, AboutActivity.class));
+                startActivity(new Intent(DashboardPasienActivity.this, AboutActivity.class));
                 break;
         }
     }
@@ -116,7 +115,7 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             case R.id.logout :
                 preference.deleteLoginSession();
 
-                Intent intent = new Intent(DashboardActivity.this, LoginMenuActivity.class);
+                Intent intent = new Intent(DashboardPasienActivity.this, LoginMenuActivity.class);
                 startActivity(intent);
 
                 break;
@@ -192,14 +191,14 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
     }
 
-    private void getStatus(String nikpj) {
+    private void getStatus(String idkasus) {
 
         progressDialog.setMessage("Harap Tunggu");
         progressDialog.show();
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<NotifResponse> getData = api.statusNotifPj(nikpj);
+        Call<NotifResponse> getData = api.statusNotifPasien(idkasus);
         getData.enqueue(new Callback<NotifResponse>() {
             @Override
             public void onResponse(Call<NotifResponse> call, Response<NotifResponse> response) {
@@ -209,10 +208,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
                 if (!error) {
 
-                    Toast.makeText(DashboardActivity.this, "Status = "+status, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DashboardPasienActivity.this, "Status = "+status, Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(DashboardActivity.this, "Alarm Set", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DashboardPasienActivity.this, "Alarm Set", Toast.LENGTH_SHORT).show();
                     setTimeAlarm();
                 }
 
@@ -222,10 +221,9 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onFailure(Call<NotifResponse> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(DashboardActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashboardPasienActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 }
-

@@ -15,11 +15,26 @@ public class PasienResponse {
     @SerializedName("data")
     private List<PasienEntity> listPasien;
 
+    @SerializedName("data_pasien")
+    private List<PasienEntity> listDataPasien;
+
     @SerializedName("user")
     private List<UserEntity> user;
 
     @SerializedName("laporan")
     private List<LaporanEntity> listLaporan;
+
+    @SerializedName("message")
+    private String message;
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public int getStatus() {
         return status;
@@ -59,5 +74,13 @@ public class PasienResponse {
 
     public void setListLaporan(List<LaporanEntity> listLaporan) {
         this.listLaporan = listLaporan;
+    }
+
+    public List<PasienEntity> getListDataPasien() {
+        return listDataPasien;
+    }
+
+    public void setListDataPasien(List<PasienEntity> listDataPasien) {
+        this.listDataPasien = listDataPasien;
     }
 }

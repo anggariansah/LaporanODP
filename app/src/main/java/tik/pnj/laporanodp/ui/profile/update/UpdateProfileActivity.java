@@ -1,10 +1,12 @@
 package tik.pnj.laporanodp.ui.profile.update;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -12,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,15 +29,17 @@ import tik.pnj.laporanodp.network.RetrofitServer;
 
 public class UpdateProfileActivity extends AppCompatActivity {
 
-    TextInputEditText  mEdtNoKtp, mEdtNama, mEdtAlamat;
-    Button mButtonUpdate;
+    TextInputEditText  mEdtNoKtp, mEdtNama, mEdtAlamat, mEdtTglLahir;
+    Button mButtonUpdate, mBtnTgl;
     RadioButton mRadioLaki, mRadioPerempuan;
 
-    String id, noKK, noKTP, nama, alamat, jenisKelamin;
+    String id, noKTP, nama, alamat, jenisKelamin, tglLahir;
 
     private ProgressDialog progressDialog;
 
     private List<PasienEntity> listPasien;
+
+    Calendar dateNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +57,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
         mEdtNoKtp = findViewById(R.id.text_inpute_edit_no_ktp);
         mEdtNama = findViewById(R.id.text_input_edit_nama);
         mEdtAlamat = findViewById(R.id.text_input_edit_alamat);
+        mEdtTglLahir = findViewById(R.id.text_input_edit_tgl_lahir);
         mButtonUpdate = findViewById(R.id.btn_update);
+        mBtnTgl = findViewById(R.id.btn_tgl);
         mRadioLaki = findViewById(R.id.radio_laki);
         mRadioPerempuan = findViewById(R.id.radio_perempuan);
 
@@ -60,6 +68,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Update Data Pasien");
         }
 
+        dateNow = Calendar.getInstance();
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Harap Tunggu");
@@ -69,6 +78,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 validationUpdate();
+            }
+        });
+
+        mBtnTgl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePicker();
             }
         });
 
@@ -91,7 +107,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
                 if (!error) {
 
-                    listPasien = response.body().getListPasien();
+                    listPasien = response.body().getListDataPasien();
 
                     setData();
 
@@ -118,6 +134,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         mEdtNoKtp.setText(pasien.getNik());
         mEdtNama.setText(pasien.getNama());
         mEdtAlamat.setText(pasien.getAlamat());
+        mEdtTglLahir.setText(pasien.getTglLahir());
 
         jenisKelamin = pasien.getJenkel();
 
@@ -137,7 +154,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getData = api.updateProfile(id, noKTP, nama, alamat, jenisKelamin);
+        Call<PasienResponse> getData = api.updateProfile(id, noKTP, nama, alamat, jenisKelamin, tglLahir);
         getData.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
@@ -170,18 +187,40 @@ public class UpdateProfileActivity extends AppCompatActivity {
         noKTP = mEdtNoKtp.getText().toString();
         nama = mEdtNama.getText().toString();
         alamat = mEdtAlamat.getText().toString();
+        tglLahir = mEdtTglLahir.getText().toString();
 
         if (mRadioLaki.isChecked())
             jenisKelamin = "L";
         else
             jenisKelamin = "P";
 
-        if (!noKK.equals("") || !noKTP.equals("") || !nama.equals("") || !alamat.equals("")) {
-            updateProfile();
-        } else {
+        if (noKTP.equals("") || nama.equals("") || alamat.equals("") || jenisKelamin.equals("") || tglLahir.equals("")) {
             Toast.makeText(UpdateProfileActivity.this, "Data Tidak Boleh Kosong!!", Toast.LENGTH_SHORT).show();
+        } else {
+            updateProfile();
         }
     }
+
+    private void showDatePicker(){
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Calendar dateSelected = Calendar.getInstance();
+                dateSelected.set(Calendar.YEAR, year);
+                dateSelected.set(Calendar.MONTH, month);
+                dateSelected.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+                mEdtTglLahir.setText(sdf.format(dateSelected.getTime()));
+            }
+        };
+
+        new DatePickerDialog(this, dateSetListener,
+                dateNow.get(Calendar.YEAR),
+                dateNow.get(Calendar.MONTH),
+                dateNow.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
 
     @Override
     public boolean onSupportNavigateUp() {

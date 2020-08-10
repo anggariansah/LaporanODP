@@ -20,6 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tik.pnj.laporanodp.R;
 import tik.pnj.laporanodp.data.LaporanEntity;
+import tik.pnj.laporanodp.data.LaporanResponse;
 import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
@@ -87,10 +88,10 @@ public class ListLaporanActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
         ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
-        Call<PasienResponse> getData = api.listLaporan(idOdp);
-        getData.enqueue(new Callback<PasienResponse>() {
+        Call<LaporanResponse> getData = api.listLaporan(idOdp);
+        getData.enqueue(new Callback<LaporanResponse>() {
             @Override
-            public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
+            public void onResponse(Call<LaporanResponse> call, Response<LaporanResponse> response) {
 
                 boolean error = response.body().isError();
 
@@ -108,7 +109,7 @@ public class ListLaporanActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<PasienResponse> call, Throwable t) {
+            public void onFailure(Call<LaporanResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(ListLaporanActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
             }
