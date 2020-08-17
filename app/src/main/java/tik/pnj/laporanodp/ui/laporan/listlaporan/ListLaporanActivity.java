@@ -132,5 +132,9 @@ public class ListLaporanActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

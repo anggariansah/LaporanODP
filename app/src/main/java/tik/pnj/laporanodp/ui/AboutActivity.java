@@ -15,7 +15,7 @@ public class AboutActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Tentang Pembuat");
+            getSupportActionBar().setTitle("Tentang Aplikasi");
         }
     }
 
