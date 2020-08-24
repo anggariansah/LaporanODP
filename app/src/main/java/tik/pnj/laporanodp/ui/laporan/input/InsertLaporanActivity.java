@@ -1,7 +1,5 @@
 package tik.pnj.laporanodp.ui.laporan.input;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +10,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.Timestamp;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -28,7 +27,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
 
     // widget
     Button mBtnKirim, mBtnBatal;
-    RadioGroup mRgDemam, mRgSesak, mRgNyeri, mRgBatuk, mRgPilek, mRgDiare;
+    RadioGroup mRgSesak, mRgNyeri, mRgBatuk, mRgPilek, mRgDiare;
     TextView mTvTodayDate, mTvName;
     EditText mEdtSuhu;
 
@@ -36,7 +35,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
     // vars
     Calendar calendar;
     SimpleDateFormat dateFormat, dateFormatInsert;
-    String todayDate, todayDateInsert , idOdp;
+    String todayDate, todayDateInsert, idOdp;
 
     private ProgressDialog progressDialog;
 
@@ -51,7 +50,6 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
         mTvName = findViewById(R.id.tv_name);
         mBtnKirim = findViewById(R.id.btn_kirim);
         mBtnBatal = findViewById(R.id.btn_batal);
-        mRgDemam = findViewById(R.id.radio_group_demam);
         mRgSesak = findViewById(R.id.radio_group_sesak);
         mRgNyeri = findViewById(R.id.radio_group_nyeri);
         mRgBatuk = findViewById(R.id.radio_group_batuk);
@@ -73,7 +71,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
         if (extras != null) {
             idOdp = extras.getString("id");
 
-            Toast.makeText(this, ""+idOdp, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "" + idOdp, Toast.LENGTH_SHORT).show();
             mTvName.setText(extras.getString("name"));
         }
 
@@ -99,15 +97,13 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
     }
 
     private void checkSelectedRadio() {
-        int idDemam = mRgDemam.getCheckedRadioButtonId();
         int idSesak = mRgSesak.getCheckedRadioButtonId();
         int idNyeri = mRgNyeri.getCheckedRadioButtonId();
         int idBatuk = mRgBatuk.getCheckedRadioButtonId();
         int idPilek = mRgPilek.getCheckedRadioButtonId();
         int idDiare = mRgDiare.getCheckedRadioButtonId();
 
-        if (idDemam != -1 && idSesak != -1 && idNyeri != -1 && idBatuk != -1 && idPilek != -1 && idDiare != -1) {
-            RadioButton rbDemam = findViewById(idDemam);
+        if (idSesak != -1 && idNyeri != -1 && idBatuk != -1 && idPilek != -1 && idDiare != -1) {
             RadioButton rbSesak = findViewById(idSesak);
             RadioButton rbNyeri = findViewById(idNyeri);
             RadioButton rbBatuk = findViewById(idBatuk);
@@ -132,7 +128,6 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
     }
 
     private void saveData(String[] data) {
-        String timeStamp = new Timestamp(System.currentTimeMillis()).toString();
 
         progressDialog.setMessage("Harap Tunggu ..");
         progressDialog.setCancelable(false);

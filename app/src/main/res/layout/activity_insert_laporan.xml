@@ -46,56 +46,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="@string/demam"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-
-            <RadioGroup
-                android:id="@+id/radio_group_demam"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/radio_demam_ya"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/radio_ya" />
-
-                <RadioButton
-                    android:id="@+id/radio_demam_tidak"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-                    android:text="@string/radio_tidak" />
-
-                <RadioButton
-                    android:id="@+id/radio_demam_tidak_tahu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_weight="1"
-                    android:text="@string/radio_tidak_tahu" />
-
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
                 android:text="@string/sesak"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
