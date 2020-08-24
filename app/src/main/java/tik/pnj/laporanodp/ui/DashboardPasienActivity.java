@@ -116,6 +116,7 @@ public class DashboardPasienActivity extends AppCompatActivity implements View.O
                 preference.deleteLoginSession();
 
                 Intent intent = new Intent(DashboardPasienActivity.this, LoginMenuActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
                 break;

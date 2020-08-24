@@ -1,13 +1,13 @@
 package tik.pnj.laporanodp.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -82,8 +82,10 @@ public class LoginPjActivity extends AppCompatActivity {
                     String nik = response.body().getUser().get(0).getNik();
                     preference.createLoginSession(nik, "pj");
                     Toast.makeText(LoginPjActivity.this, "Login Success!!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginPjActivity.this, DashboardActivity.class));
-                    finish();
+
+                    Intent i = new Intent(LoginPjActivity.this, DashboardActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
                 } else {
                     Toast.makeText(LoginPjActivity.this, "Login failed!!", Toast.LENGTH_SHORT).show();
                 }

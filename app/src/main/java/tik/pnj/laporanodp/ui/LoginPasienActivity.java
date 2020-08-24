@@ -84,8 +84,10 @@ public class LoginPasienActivity extends AppCompatActivity implements View.OnCli
                     String idKasus = response.body().getUser().get(0).getIdKasus();
                     preference.createLoginSession(idKasus, "pasien");
                     Toast.makeText(LoginPasienActivity.this, "Login Success!!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginPasienActivity.this, DashboardPasienActivity.class));
-                    finish();
+
+                    Intent i = new Intent(LoginPasienActivity.this, DashboardPasienActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(i);
                 } else {
                     Toast.makeText(LoginPasienActivity.this, "Login failed!!", Toast.LENGTH_SHORT).show();
                 }
