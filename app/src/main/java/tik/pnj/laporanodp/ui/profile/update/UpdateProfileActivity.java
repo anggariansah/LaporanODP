@@ -55,7 +55,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id = extras.getString("id");
-            Toast.makeText(this, "" + id, Toast.LENGTH_SHORT).show();
         }else{
             id = preference.getUserId();
         }

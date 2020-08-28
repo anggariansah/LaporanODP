@@ -25,11 +25,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tik.pnj.laporanodp.R;
 import tik.pnj.laporanodp.data.NotifResponse;
+import tik.pnj.laporanodp.data.PasienEntity;
 import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
 import tik.pnj.laporanodp.receiver.AlarmReceiverPagi;
 import tik.pnj.laporanodp.receiver.AlarmReceiverSiang;
+import tik.pnj.laporanodp.ui.laporan.listlaporan.ListLaporanActivity;
 import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpPasienActivity;
 import tik.pnj.laporanodp.ui.profile.ProfilePasienActivity;
 import tik.pnj.laporanodp.ui.profile.update.UpdateProfileActivity;
@@ -47,8 +49,11 @@ public class DashboardPasienActivity extends AppCompatActivity implements View.O
     private ProgressDialog progressDialog;
 
     private List<PasienResponse> listPasien;
+    private List<PasienEntity> listDataPasien;
 
     private UserPreference preference;
+
+    private String nama, idkasus;
 
 
     @Override
@@ -77,9 +82,10 @@ public class DashboardPasienActivity extends AppCompatActivity implements View.O
         progressDialog = new ProgressDialog(this);
 
 
-        String idkasus = preference.getUserId();
+        idkasus = preference.getUserId();
 
         getStatus(idkasus);
+        getListProfile(idkasus);
     }
 
     @Override
@@ -90,7 +96,10 @@ public class DashboardPasienActivity extends AppCompatActivity implements View.O
                 break;
 
             case R.id.cv_laporan:
-                startActivity(new Intent(DashboardPasienActivity.this, ListOdpPasienActivity.class));
+                Intent intent = new Intent(DashboardPasienActivity.this, ListLaporanActivity.class);
+                intent.putExtra("id",idkasus);
+                intent.putExtra("name",nama);
+                startActivity(intent);
                 break;
 
             case R.id.cv_ganti_password:
@@ -222,6 +231,41 @@ public class DashboardPasienActivity extends AppCompatActivity implements View.O
 
             @Override
             public void onFailure(Call<NotifResponse> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(DashboardPasienActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void getListProfile(String id) {
+
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+
+        ApiRequest api = RetrofitServer.getClient().create(ApiRequest.class);
+        Call<PasienResponse> getData = api.detailProfile(id);
+        getData.enqueue(new Callback<PasienResponse>() {
+            @Override
+            public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
+
+                boolean error = response.body().isError();
+
+                if (!error) {
+
+                    listDataPasien = response.body().getListDataPasien();
+
+                    nama = listDataPasien.get(0).getNama();
+
+                } else {
+                    Toast.makeText(DashboardPasienActivity.this, "Tidak ada data", Toast.LENGTH_SHORT).show();
+                }
+
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<PasienResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(DashboardPasienActivity.this, "Gagal mengambil data", Toast.LENGTH_SHORT).show();
             }
