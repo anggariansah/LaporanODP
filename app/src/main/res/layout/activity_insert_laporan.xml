@@ -97,6 +97,14 @@
 
                 </LinearLayout>
 
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#ddd" />
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -146,6 +154,13 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#ddd" />
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -192,6 +207,12 @@
                     </RadioGroup>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#ddd" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -241,6 +262,12 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#ddd" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -288,6 +315,12 @@
                     </RadioGroup>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="10dp"
+                    android:background="#ddd" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

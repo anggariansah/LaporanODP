@@ -98,7 +98,6 @@ public class ListOdpPasienActivity extends AppCompatActivity {
         adapter = new ListOdpAdapter(ListOdpPasienActivity.this, listPasien, new ListOdpAdapter.ItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(ListOdpPasienActivity.this, listPasien.get(position).getNama() + "\n" + listPasien.get(position).getId(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ListOdpPasienActivity.this, ListLaporanActivity.class);
                 intent.putExtra("id", listPasien.get(position).getId());
                 intent.putExtra("name", listPasien.get(position).getNama());

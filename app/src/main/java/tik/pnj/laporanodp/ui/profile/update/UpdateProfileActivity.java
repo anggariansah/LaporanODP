@@ -26,6 +26,7 @@ import tik.pnj.laporanodp.data.PasienEntity;
 import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
+import tik.pnj.laporanodp.util.UserPreference;
 
 public class UpdateProfileActivity extends AppCompatActivity {
 
@@ -36,6 +37,7 @@ public class UpdateProfileActivity extends AppCompatActivity {
     String id, noKTP, nama, alamat, jenisKelamin, tglLahir;
 
     private ProgressDialog progressDialog;
+    private UserPreference preference;
 
     private List<PasienEntity> listPasien;
 
@@ -48,10 +50,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
+        preference = new UserPreference(this);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id = extras.getString("id");
             Toast.makeText(this, "" + id, Toast.LENGTH_SHORT).show();
+        }else{
+            id = preference.getUserId();
         }
 
         mEdtNoKtp = findViewById(R.id.text_inpute_edit_no_ktp);

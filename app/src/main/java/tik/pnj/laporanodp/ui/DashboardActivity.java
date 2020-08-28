@@ -210,10 +210,10 @@ public class DashboardActivity extends AppCompatActivity implements View.OnClick
 
                 if (!error) {
 
-                    Toast.makeText(DashboardActivity.this, "Status = "+status, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(DashboardActivity.this, "Status = "+status, Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(DashboardActivity.this, "Alarm Set", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(DashboardActivity.this, "Alarm Set", Toast.LENGTH_SHORT).show();
                     setTimeAlarm();
                 }
 

@@ -70,8 +70,6 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             idOdp = extras.getString("id");
-
-            Toast.makeText(this, "" + idOdp, Toast.LENGTH_SHORT).show();
             mTvName.setText(extras.getString("name"));
         }
 

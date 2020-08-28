@@ -32,6 +32,7 @@ import tik.pnj.laporanodp.receiver.AlarmReceiverPagi;
 import tik.pnj.laporanodp.receiver.AlarmReceiverSiang;
 import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpPasienActivity;
 import tik.pnj.laporanodp.ui.profile.ProfilePasienActivity;
+import tik.pnj.laporanodp.ui.profile.update.UpdateProfileActivity;
 import tik.pnj.laporanodp.util.UserPreference;
 
 public class DashboardPasienActivity extends AppCompatActivity implements View.OnClickListener {
@@ -85,7 +86,7 @@ public class DashboardPasienActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cv_profile:
-                startActivity(new Intent(DashboardPasienActivity.this, ProfilePasienActivity.class));
+                startActivity(new Intent(DashboardPasienActivity.this, UpdateProfileActivity.class));
                 break;
 
             case R.id.cv_laporan:
@@ -209,10 +210,10 @@ public class DashboardPasienActivity extends AppCompatActivity implements View.O
 
                 if (!error) {
 
-                    Toast.makeText(DashboardPasienActivity.this, "Status = "+status, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(DashboardPasienActivity.this, "Status = "+status, Toast.LENGTH_SHORT).show();
 
                 } else {
-                    Toast.makeText(DashboardPasienActivity.this, "Alarm Set", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(DashboardPasienActivity.this, "Alarm Set", Toast.LENGTH_SHORT).show();
                     setTimeAlarm();
                 }
 
