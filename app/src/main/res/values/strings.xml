@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Laporan ODP</string>
-    <string name="welcome_login">Selamat Datang di Aplikasi\nLaporan Harian ODP</string>
+    <string name="app_name">Aplikasi Laporan Pantauan Harian Puskesmas Depok Jaya</string>
+    <string name="welcome_login">Selamat Datang di Aplikasi\nLaporan Pantauan Harian\nPuskesmas Depok Jaya</string>
     <string name="nomor_ktp">Nomor KTP</string>
     <string name="password">Password</string>
     <string name="masuk">MASUK</string>
-    <string name="splash_screen_title">Laporan Harian ODP \nPuskesmas Abadi Depok</string>
+    <string name="splash_screen_title">Aplikasi Laporan Pantauan Harian\nPuskesmas Depok Jaya</string>
     <string name="dashboard">Dashboard</string>
     <string name="dashboard_pasien">Dashboard Pasien</string>
     <string name="logo">Logo</string>
@@ -37,5 +37,6 @@
     <string name="suhu_tubuh">Suhu Tubuh</string>
     <string name="radio_tidak_tahu">Tidak Tahu</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
-    <string name="deskripsi_about">Aplikasi ini meruapakan aplikasi pendataan pasien ODP pada puskesmas jaya abadi kota depok, selaint itu aplikasi ini berfungsi sebagai pencatatan laporan harian pasien odp</string>
+    <string name="deskripsi_about">Aplikasi ini merupakan aplikasi pendataan pasien ODP pada puskesmas jaya abadi kota depok, selain itu aplikasi ini berfungsi sebagai pencatatan laporan harian pasien odp</string>
+    <string name="laporan_ke">Laporan ke - %1$s</string>
 </resources>

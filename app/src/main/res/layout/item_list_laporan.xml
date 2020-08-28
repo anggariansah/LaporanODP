@@ -7,28 +7,9 @@
     android:layout_marginTop="10dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_hari_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="Hari Ke - "
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tv_item_hari"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/tv_hari_title"
-        android:text="1"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_hari_title"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true"
@@ -40,28 +21,21 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_item_hari"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/laporan_ke"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/tv_item_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:textColor="@android:color/black"
+                android:textSize="20sp"
                 tools:text="13 Mei 2020" />
-
-            <TextView
-                android:id="@+id/tv_item_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:textSize="30sp"
-                tools:text="Sudah Lapor" />
-
-            <Button
-                android:id="@+id/btn_item_detail"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:layout_gravity="end|bottom"
-                android:background="@drawable/button_outline"
-                android:text="@string/detail"
-                android:textAllCaps="false" />
 
         </LinearLayout>
 
