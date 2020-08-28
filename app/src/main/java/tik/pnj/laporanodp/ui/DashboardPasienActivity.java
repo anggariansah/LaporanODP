@@ -130,8 +130,8 @@ public class DashboardPasienActivity extends AppCompatActivity implements View.O
         Calendar calPagi = (Calendar) calNow.clone();
         Calendar calSiang = (Calendar) calNow.clone();
 
-        calPagi.set(Calendar.HOUR_OF_DAY, 9);
-        calPagi.set(Calendar.MINUTE, 0);
+        calPagi.set(Calendar.HOUR_OF_DAY, 19);
+        calPagi.set(Calendar.MINUTE, 58);
         calPagi.set(Calendar.SECOND, 0);
         calPagi.set(Calendar.MILLISECOND, 0);
 
