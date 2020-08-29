@@ -6,7 +6,7 @@ import tik.pnj.laporanodp.data.PasienEntity;
 
 public class DummyData {
 
-    public static final ArrayList<PasienEntity> getDummyPasien() {
+    public static ArrayList<PasienEntity> getDummyPasien() {
         ArrayList<PasienEntity> listPasien = new ArrayList<>();
 
         listPasien.add(new PasienEntity(

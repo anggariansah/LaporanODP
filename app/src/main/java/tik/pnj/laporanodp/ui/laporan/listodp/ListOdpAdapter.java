@@ -60,7 +60,7 @@ public class ListOdpAdapter extends RecyclerView.Adapter<ListOdpAdapter.ViewHold
         return listPasien.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTvNik, mTvNama;
         ImageView mIvJenkel;

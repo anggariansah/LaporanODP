@@ -61,7 +61,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
         dateFormat = new SimpleDateFormat("EEEE, d MMM yyyy");
         dateFormatInsert = new SimpleDateFormat("yyyy-MM-dd");
 
-        todayDate = dateFormatInsert.format(calendar.getTime());
+        todayDate = dateFormat.format(calendar.getTime());
         todayDateInsert = dateFormatInsert.format(calendar.getTime());
         mTvTodayDate.setText(todayDate);
 
@@ -136,7 +136,7 @@ public class InsertLaporanActivity extends AppCompatActivity implements View.OnC
         login.enqueue(new Callback<PasienResponse>() {
             @Override
             public void onResponse(Call<PasienResponse> call, Response<PasienResponse> response) {
-                progressDialog.hide();
+                progressDialog.dismiss();
 
                 boolean error = response.body().isError();
 

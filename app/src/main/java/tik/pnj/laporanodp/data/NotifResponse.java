@@ -2,8 +2,6 @@ package tik.pnj.laporanodp.data;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 public class NotifResponse {
 
     @SerializedName("status")

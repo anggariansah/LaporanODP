@@ -31,15 +31,15 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
+                android:textStyle="bold"
                 android:text="@string/daftar_laporan_harian"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_list_laporan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
                 android:paddingBottom="10dp"

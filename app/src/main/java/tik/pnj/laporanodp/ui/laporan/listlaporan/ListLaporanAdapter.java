@@ -37,7 +37,7 @@ public class ListLaporanAdapter extends RecyclerView.Adapter<ListLaporanAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
         LaporanEntity model = listLaporan.get(position);
 
@@ -57,6 +57,12 @@ public class ListLaporanAdapter extends RecyclerView.Adapter<ListLaporanAdapter.
         holder.mTvHari.setText(context.getResources().getString(R.string.laporan_ke, String.valueOf(day)));
         holder.mTvTanggal.setText(dateConvert);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemClickListener.onItemClick(listLaporan.get(holder.getAdapterPosition()));
+            }
+        });
 
     }
 
@@ -65,7 +71,7 @@ public class ListLaporanAdapter extends RecyclerView.Adapter<ListLaporanAdapter.
         return listLaporan.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView mTvHari, mTvTanggal;
 
@@ -79,7 +85,7 @@ public class ListLaporanAdapter extends RecyclerView.Adapter<ListLaporanAdapter.
 
 
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(LaporanEntity data);
     }
 
 }

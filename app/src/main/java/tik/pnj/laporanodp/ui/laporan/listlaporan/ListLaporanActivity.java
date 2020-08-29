@@ -21,9 +21,9 @@ import retrofit2.Response;
 import tik.pnj.laporanodp.R;
 import tik.pnj.laporanodp.data.LaporanEntity;
 import tik.pnj.laporanodp.data.LaporanResponse;
-import tik.pnj.laporanodp.data.PasienResponse;
 import tik.pnj.laporanodp.network.ApiRequest;
 import tik.pnj.laporanodp.network.RetrofitServer;
+import tik.pnj.laporanodp.ui.laporan.DetailLaporanActivity;
 import tik.pnj.laporanodp.ui.laporan.input.InsertLaporanActivity;
 
 public class ListLaporanActivity extends AppCompatActivity {
@@ -122,10 +122,11 @@ public class ListLaporanActivity extends AppCompatActivity {
         mRvLaporan.setHasFixedSize(true);
         adapter = new ListLaporanAdapter(ListLaporanActivity.this, listLaporan, new ListLaporanAdapter.ItemClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-//                Intent intent = new Intent(ListLaporanActivity.this, InsertLaporanActivity.class);
-//                intent.putExtra("id", listPasien.get(position).getId());
-//                startActivity(intent);
+            public void onItemClick(LaporanEntity data) {
+                Intent intent = new Intent(ListLaporanActivity.this, DetailLaporanActivity.class);
+                intent.putExtra("data", data);
+                intent.putExtra("name", nama);
+                startActivity(intent);
             }
         });
         mRvLaporan.setAdapter(adapter);

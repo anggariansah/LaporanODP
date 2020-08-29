@@ -45,7 +45,7 @@ public class ListOdpPasienActivity extends AppCompatActivity {
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Daftar ODP");
+            getSupportActionBar().setTitle("Daftar Pasien");
         }
 
         preference = new UserPreference(this);
