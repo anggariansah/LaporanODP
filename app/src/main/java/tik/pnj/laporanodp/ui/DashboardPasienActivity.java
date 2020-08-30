@@ -32,8 +32,6 @@ import tik.pnj.laporanodp.network.RetrofitServer;
 import tik.pnj.laporanodp.receiver.AlarmReceiverPagi;
 import tik.pnj.laporanodp.receiver.AlarmReceiverSiang;
 import tik.pnj.laporanodp.ui.laporan.listlaporan.ListLaporanActivity;
-import tik.pnj.laporanodp.ui.laporan.listodp.ListOdpPasienActivity;
-import tik.pnj.laporanodp.ui.profile.ProfilePasienActivity;
 import tik.pnj.laporanodp.ui.profile.update.UpdateProfileActivity;
 import tik.pnj.laporanodp.util.UserPreference;
 
