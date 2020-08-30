@@ -36,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
     private UserPreference preference;
     private ProgressDialog progressDialog;
 
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +54,19 @@ public class ProfileActivity extends AppCompatActivity {
         preference = new UserPreference(this);
         progressDialog = new ProgressDialog(this);
 
-        String id = preference.getUserId();
-        getListProfile(id);
+        id = preference.getUserId();
+
 
     }
 
     private ArrayList<PasienEntity> getDummyData() {
         return DummyData.getDummyPasien();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getListProfile(id);
     }
 
     private void getListProfile(String nomorKK) {
