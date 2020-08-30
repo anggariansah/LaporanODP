@@ -8,32 +8,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:focusable="false"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"
-            tools:text="Rahma Azahri" />
-
-        <TextView
-            android:id="@+id/tv_today_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            tools:text="Selasa, 12 Mei 2020" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -41,9 +19,67 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            app:contentPadding="10dp"
             app:cardCornerRadius="5dp"
-            app:cardElevation="2dp">
+            app:cardElevation="2dp"
+            app:contentPadding="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/nama_pasien"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:text="Rahma Azahri" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginVertical="5dp"
+                    android:background="#ddd" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tanggal_laporan"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_today_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    tools:text="Selasa, 12 Mei 2020" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="2dp"
+            app:contentPadding="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -61,7 +97,8 @@
                         android:gravity="center_vertical"
                         android:text="@string/sesak"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <RadioGroup
                         android:id="@+id/radio_group_sesak"
@@ -117,7 +154,8 @@
                         android:gravity="center_vertical"
                         android:text="@string/nyeri_tenggorokan"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <RadioGroup
                         android:id="@+id/radio_group_nyeri"
@@ -173,7 +211,8 @@
                         android:gravity="center_vertical"
                         android:text="@string/batuk"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <RadioGroup
                         android:id="@+id/radio_group_batuk"
@@ -226,7 +265,8 @@
                         android:gravity="center_vertical"
                         android:text="@string/pilek"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <RadioGroup
                         android:id="@+id/radio_group_pilek"
@@ -280,7 +320,8 @@
                         android:gravity="center_vertical"
                         android:text="@string/diare"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <RadioGroup
                         android:id="@+id/radio_group_diare"
@@ -334,7 +375,8 @@
                         android:gravity="center_vertical"
                         android:text="@string/suhu_tubuh"
                         android:textColor="@android:color/black"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/edt_suhu"
@@ -359,22 +401,24 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_kirim"
+                android:id="@+id/btn_batal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="0.5"
                 android:background="@drawable/button_outline"
-                android:text="@string/kirim" />
+                android:text="@string/batal"
+                android:textColor="@color/colorPrimary" />
 
             <Button
-                android:id="@+id/btn_batal"
+                android:id="@+id/btn_kirim"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="0.5"
-                android:background="@drawable/button_outline"
-                android:text="@string/batal" />
+                android:background="@drawable/button_fill"
+                android:text="@string/kirim"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 

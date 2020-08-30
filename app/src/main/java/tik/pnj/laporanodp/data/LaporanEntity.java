@@ -1,8 +1,11 @@
 package tik.pnj.laporanodp.data;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class LaporanEntity {
+public class LaporanEntity implements Parcelable {
 
     @SerializedName("id_laporan")
     private String idLaporan;
@@ -16,10 +19,10 @@ public class LaporanEntity {
     @SerializedName("demam")
     private String demam;
 
-    @SerializedName("sesak")
+    @SerializedName("sesak_napas")
     private String sesak;
 
-    @SerializedName("nyeri_tenggorokan")
+    @SerializedName("sakit_tgg")
     private String nyeriTenggorokan;
 
     @SerializedName("batuk")
@@ -31,75 +34,90 @@ public class LaporanEntity {
     @SerializedName("diare")
     private String diare;
 
-    public String getIdLaporan() {
-        return idLaporan;
+    @SerializedName("suhu_demam")
+    private String suhu;
+
+    protected LaporanEntity(Parcel in) {
+        idLaporan = in.readString();
+        idOdp = in.readString();
+        tanggal = in.readString();
+        demam = in.readString();
+        sesak = in.readString();
+        nyeriTenggorokan = in.readString();
+        batuk = in.readString();
+        pilek = in.readString();
+        diare = in.readString();
+        suhu = in.readString();
     }
 
-    public void setIdLaporan(String idLaporan) {
-        this.idLaporan = idLaporan;
+    public static final Creator<LaporanEntity> CREATOR = new Creator<LaporanEntity>() {
+        @Override
+        public LaporanEntity createFromParcel(Parcel in) {
+            return new LaporanEntity(in);
+        }
+
+        @Override
+        public LaporanEntity[] newArray(int size) {
+            return new LaporanEntity[size];
+        }
+    };
+
+    public String getIdLaporan() {
+        return idLaporan;
     }
 
     public String getIdOdp() {
         return idOdp;
     }
 
-    public void setIdOdp(String idOdp) {
-        this.idOdp = idOdp;
-    }
-
     public String getTanggal() {
         return tanggal;
-    }
-
-    public void setTanggal(String tanggal) {
-        this.tanggal = tanggal;
     }
 
     public String getDemam() {
         return demam;
     }
 
-    public void setDemam(String demam) {
-        this.demam = demam;
-    }
-
     public String getSesak() {
         return sesak;
-    }
-
-    public void setSesak(String sesak) {
-        this.sesak = sesak;
     }
 
     public String getNyeriTenggorokan() {
         return nyeriTenggorokan;
     }
 
-    public void setNyeriTenggorokan(String nyeriTenggorokan) {
-        this.nyeriTenggorokan = nyeriTenggorokan;
-    }
-
     public String getBatuk() {
         return batuk;
-    }
-
-    public void setBatuk(String batuk) {
-        this.batuk = batuk;
     }
 
     public String getPilek() {
         return pilek;
     }
 
-    public void setPilek(String pilek) {
-        this.pilek = pilek;
-    }
-
     public String getDiare() {
         return diare;
     }
 
-    public void setDiare(String diare) {
-        this.diare = diare;
+    public String getSuhu() {
+        return suhu;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(idLaporan);
+        dest.writeString(idOdp);
+        dest.writeString(tanggal);
+        dest.writeString(demam);
+        dest.writeString(sesak);
+        dest.writeString(nyeriTenggorokan);
+        dest.writeString(batuk);
+        dest.writeString(pilek);
+        dest.writeString(diare);
+        dest.writeString(suhu);
     }
 }

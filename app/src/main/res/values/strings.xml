@@ -37,6 +37,12 @@
     <string name="suhu_tubuh">Suhu Tubuh</string>
     <string name="radio_tidak_tahu">Tidak Tahu</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
-    <string name="deskripsi_about">Aplikasi ini merupakan aplikasi pendataan pasien ODP pada puskesmas jaya abadi kota depok, selain itu aplikasi ini berfungsi sebagai pencatatan laporan harian pasien odp</string>
+    <string name="deskripsi_about">Aplikasi laporan pemantauan harian dibuat dengan tujuan untuk mendata keadaan harian pasien yang memerlukan pemantauan pada Puskesmas Depok Jaya kota Depok secara real time.</string>
     <string name="laporan_ke">Laporan ke - %1$s</string>
+
+    <string name="suhu">%1$s&#176; C</string>
+    <string name="celcius">&#176; C</string>
+    <string name="nama_pasien">Nama Pasien</string>
+    <string name="tanggal_laporan">Tanggal Laporan</string>
+    <string name="detail_laporan">Detail Laporan</string>
 </resources>
