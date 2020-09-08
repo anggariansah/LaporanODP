@@ -57,13 +57,13 @@ public interface ApiRequest {
     @GET("profile_pasien/data")
     Call<PasienResponse> detailProfile(@Query("id_pasien") String id);
 
-    @GET("profile_pasien")
+    @GET("profile_pasien/list_pasien_nik")
     Call<PasienResponse> listOdp(@Query("nik_pj") String nomorKK);
 
     @GET("profile_pasien")
     Call<PasienResponse> listOdpPasien(@Query("id_kasus") String idkasus);
 
-    @GET("informasi_klinis")
+    @GET("informasi_klinis/laporan_mobile")
     Call<LaporanResponse> listLaporan(@Query("id_kasus") String idOdp);
 
     @GET("informasi_klinis/check_notif_pj")
